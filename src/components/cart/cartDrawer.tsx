@@ -6,8 +6,8 @@ import { Dialog, Transition } from '@headlessui/react'
 import { X } from 'lucide-react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import CartItem from './CartItem'
-import CartSummary from './CartSummary'
+import CartItem from './cartItem'
+import CartSummary from './cartSummary'
 import { useCart } from '@/providers/cartProvider'
 import { useDrawer } from '@/providers/drawerProvider'
 import { useAuth } from '@/providers/authProvider'
@@ -160,7 +160,7 @@ export default function CartDrawer() {
                       <div className="flex items-start justify-between">
                         <div className="flex items-center gap-2">
                           <Image
-                            src="/logo/6wings_logo 2.png"
+                            src="/images/logos/6wings-logo.png"
                             alt="Logo"
                             width={36}
                             height={36}
