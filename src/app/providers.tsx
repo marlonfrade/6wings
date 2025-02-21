@@ -5,6 +5,7 @@ import { AuthProvider } from '@/providers/authProvider'
 import { CartProvider } from '@/providers/cartProvider'
 import { DrawerProvider } from '@/providers/drawerProvider'
 import { ToastProvider } from '@/providers/toastProvider'
+import { QueryProvider } from '@/providers/queryProvider'
 
 interface ProvidersProps {
   children: ReactNode
@@ -12,13 +13,15 @@ interface ProvidersProps {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-    <AuthProvider>
-      <CartProvider>
-        <DrawerProvider>
-          <ToastProvider />
-          {children}
-        </DrawerProvider>
-      </CartProvider>
-    </AuthProvider>
+    <QueryProvider>
+      <AuthProvider>
+        <CartProvider>
+          <DrawerProvider>
+            <ToastProvider />
+            {children}
+          </DrawerProvider>
+        </CartProvider>
+      </AuthProvider>
+    </QueryProvider>
   )
 }
