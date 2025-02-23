@@ -1,3 +1,5 @@
+'use client'
+
 import { CartSummaryProps } from '@/types/cart'
 import { memo } from 'react'
 import { useFormatter, useTranslations, useLocale } from 'next-intl'

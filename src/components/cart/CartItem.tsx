@@ -1,7 +1,13 @@
+'use client'
+
 import Image from 'next/image'
 import { useCart } from '@/providers/cartProvider'
 import { Trash2, Plus, Minus } from 'lucide-react'
-import { CartItemProps } from '@/types/cart'
+import { CartItem as CartItemType } from '@/types/cart'
+
+interface CartItemProps {
+  item: CartItemType
+}
 
 export const CartItem = ({ item }: CartItemProps) => {
   const { updateQuantity, removeFromCart } = useCart()
