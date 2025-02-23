@@ -6,8 +6,9 @@ import { Dialog, Transition } from '@headlessui/react'
 import { X } from 'lucide-react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import CartItem from './cartItem'
-import CartSummary from './cartSummary'
+import { useTranslations } from 'next-intl'
+import { CartItem } from './cartItem'
+import { CartSummary } from './cartSummary'
 import { useCart } from '@/providers/cartProvider'
 import { useDrawer } from '@/providers/drawerProvider'
 import { useAuth } from '@/providers/authProvider'
@@ -19,6 +20,7 @@ interface UserPoints {
 }
 
 export default function CartDrawer() {
+  const t = useTranslations('cart')
   const { cart } = useCart()
   const { isDrawerOpen, closeDrawer } = useDrawer()
   const { user } = useAuth()
@@ -63,18 +65,16 @@ export default function CartDrawer() {
     if (!user) {
       return (
         <div className="mb-4 rounded-lg bg-gray-50 p-4">
-          <p className="text-sm text-gray-600">
-            Faça login para utilizar seus pontos
-          </p>
+          <p className="text-sm text-gray-600">{t('loginToUsePoints')}</p>
           <Button
             variant="default"
-            className="mt-2"
+            className="mt-2 text-white"
             onClick={() => {
               closeDrawer()
               router.push('/user/sign-in')
             }}
           >
-            Criar Conta / Entrar
+            {t('signInOrRegister')}
           </Button>
         </div>
       )
@@ -83,7 +83,7 @@ export default function CartDrawer() {
     if (loading) {
       return (
         <div className="mb-4">
-          <p className="text-sm text-gray-600">Carregando pontos...</p>
+          <p className="text-sm text-gray-600">{t('loading')}</p>
         </div>
       )
     }
@@ -92,19 +92,17 @@ export default function CartDrawer() {
 
     return (
       <div className="mb-4">
-        <p className="mb-2 text-sm text-gray-600">
-          Total de pontos necessários
-        </p>
+        <p className="mb-2 text-sm text-gray-600">{t('pointsNeeded')}</p>
         <div className="flex items-center justify-between">
           <span className="text-2xl font-bold text-primary">
-            {totalPoints} pts
+            {totalPoints} {t('points')}
           </span>
           <span
             className={`text-sm ${
               canPurchase ? 'text-green-600' : 'text-red-600'
             }`}
           >
-            Seus pontos: {userPoints} pts
+            {t('yourPoints')}: {userPoints} {t('points')}
           </span>
         </div>
         <div className="mt-2 h-2 rounded-full bg-gray-200">
@@ -119,8 +117,7 @@ export default function CartDrawer() {
         </div>
         {!canPurchase && (
           <p className="mt-2 text-sm text-red-600">
-            Você precisa de mais {totalPoints - userPoints} pontos para esta
-            compra
+            {t('needMorePoints', { points: totalPoints - userPoints })}
           </p>
         )}
       </div>
@@ -166,7 +163,7 @@ export default function CartDrawer() {
                             height={36}
                           />
                           <Dialog.Title className="mt-2 text-lg font-semibold leading-6 text-primary">
-                            Meu Carrinho 6Wings
+                            {t('title')}
                           </Dialog.Title>
                         </div>
                         <button
@@ -186,9 +183,9 @@ export default function CartDrawer() {
 
                       {/* Itens do carrinho */}
                       {loading ? (
-                        <p>Carregando carrinho...</p>
+                        <p>{t('loading')}</p>
                       ) : cart.length === 0 ? (
-                        <p>Seu carrinho está vazio.</p>
+                        <p>{t('empty')}</p>
                       ) : (
                         cart.map((item) => (
                           <CartItem key={item.id} item={item} />
@@ -197,7 +194,7 @@ export default function CartDrawer() {
 
                       {/* Adicionar código de cupom */}
                       <button className="mt-4 text-sm text-primary decoration-primary hover:underline">
-                        Adicionar código de cupom
+                        {t('addCoupon')}
                       </button>
 
                       {/* Resumo do carrinho */}
@@ -216,13 +213,13 @@ export default function CartDrawer() {
                             router.push('/checkout')
                           }}
                           disabled={cart.length === 0}
-                          className="disabled:opacity-50"
+                          className="text-white disabled:opacity-50"
                         >
-                          Finalizar Compra
+                          {t('checkout')}
                         </Button>
 
                         <Button variant="outline" onClick={closeDrawer}>
-                          Continuar Comprando
+                          {t('continueShopping')}
                         </Button>
                       </div>
                     </div>

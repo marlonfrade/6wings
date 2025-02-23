@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface CookiePreferences {
   necessary: boolean
@@ -16,6 +17,7 @@ interface CookieType {
 }
 
 export default function CookieConsent() {
+  const t = useTranslations('cookies')
   const [showCookieBanner, setShowCookieBanner] = useState<boolean>(false)
   const [cookiePreferences, setCookiePreferences] = useState<CookiePreferences>(
     {
@@ -82,23 +84,23 @@ export default function CookieConsent() {
   const cookieTypes: CookieType[] = [
     {
       key: 'necessary',
-      label: 'Cookies estritamente necessários',
-      description: 'Essenciais para o funcionamento do site'
+      label: t('types.necessary.title'),
+      description: t('types.necessary.description')
     },
     {
       key: 'preferences',
-      label: 'Cookies de preferências',
-      description: 'Armazenam suas preferências de navegação'
+      label: t('types.preferences.title'),
+      description: t('types.preferences.description')
     },
     {
       key: 'analytics',
-      label: 'Cookies de análise de uso',
-      description: 'Nos ajudam a entender como você usa o site'
+      label: t('types.analytics.title'),
+      description: t('types.analytics.description')
     },
     {
       key: 'marketing',
-      label: 'Cookies de marketing',
-      description: 'Utilizados para publicidade direcionada'
+      label: t('types.marketing.title'),
+      description: t('types.marketing.description')
     }
   ]
 
@@ -109,10 +111,7 @@ export default function CookieConsent() {
           <div className="-mx-3 items-center md:flex">
             <div className="mb-5 px-3 md:mb-0 md:flex-1">
               <p className="text-center text-xs leading-tight text-white md:pr-12 md:text-left">
-                Nós e parceiros selecionados utilizamos cookies para
-                personalizar sua experiência, medir o desempenho do site e
-                fornecer conteúdo relevante. Ao clicar em &ldquo;Aceitar
-                cookies&rdquo;, você concorda com o uso dessas tecnologias.
+                {t('message')}
               </p>
             </div>
             <div className="px-3 text-center">
@@ -120,13 +119,13 @@ export default function CookieConsent() {
                 className="mr-3 rounded bg-white px-8 py-2 text-sm font-bold text-primary shadow-xl hover:bg-gray-100"
                 onClick={openModal}
               >
-                Configurações
+                {t('settings')}
               </button>
               <button
                 className="rounded bg-secondary px-8 py-2 text-sm font-bold text-white shadow-xl hover:bg-secondary-600"
                 onClick={handleAcceptAll}
               >
-                Aceitar todos
+                {t('accept')}
               </button>
             </div>
           </div>
@@ -140,7 +139,7 @@ export default function CookieConsent() {
         <div className="flex h-auto w-full flex-col">
           <div className="flex h-auto w-full items-center border-b px-5 py-3">
             <div className="h-auto w-10/12 text-lg font-bold text-primary">
-              Configurações de Cookies
+              {t('title')}
             </div>
             <div className="flex h-auto w-2/12 justify-end">
               <button
@@ -186,7 +185,7 @@ export default function CookieConsent() {
               onClick={handleSavePreferences}
               className="rounded bg-primary px-8 py-2 text-sm font-bold text-white shadow-xl hover:bg-primary-800"
             >
-              Salvar preferências
+              {t('save')}
             </button>
           </div>
         </div>

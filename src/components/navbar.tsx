@@ -8,6 +8,7 @@ import Image from 'next/image'
 import React from 'react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 import {
   NavigationMenu,
@@ -35,70 +36,69 @@ import {
   NavigationItem,
   DropdownContentItem
 } from './types'
+import LocaleSwitcher from '@/components/localeSwitcher'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700']
 })
 
-// Update the NAVIGATION_ITEMS constant with proper typing
+// Update the NAVIGATION_ITEMS constant to match dictionary structure
 const NAVIGATION_ITEMS: NavigationItem[] = [
   {
-    name: 'Início',
+    name: 'navigation.home',
     path: '/',
     type: 'link'
   },
   {
-    name: 'Shopping',
+    name: 'navigation.shopping',
     path: '/offers',
     type: 'link'
   },
   {
-    name: 'Clube 6Wings',
+    name: 'navigation.club.title',
     type: 'dropdown',
     content: [
       {
-        title: 'Plano Básico',
+        title: 'navigation.club.basic.title',
         href: '/club/basic',
-        description:
-          '✅ 1000 pontos/mês\n✅ 30% de desconto na compra de pontos\n✅ R$39,90/mês'
+        description: 'navigation.club.basic.description'
       },
       {
-        title: 'Plano +TOP',
+        title: 'navigation.club.top.title',
         href: '/club/top',
-        description:
-          '✅ 4000 pontos/mês\n✅ 35% de desconto na compra de pontos\n✅ R$129,90/mês'
+        description: 'navigation.club.top.description'
       }
     ]
   },
   {
-    name: 'Seja Parceiro',
+    name: 'navigation.partners',
     path: '/partners-advertise',
     type: 'link'
   },
   {
-    name: '6Wings Pontos',
+    name: 'navigation.points',
     path: '/points',
     type: 'link'
   },
   {
-    name: 'Conheça a 6Wings',
+    name: 'navigation.about.title',
     path: '/about',
     type: 'dropdown',
     content: [
       {
-        name: 'Para Você',
+        name: 'navigation.about.forYou.title',
         path: '/about/for-you',
         type: 'dropdown',
         content: [
           {
-            name: 'Consultoria Financeira Pessoal',
+            name: 'navigation.about.forYou.financial',
             path: '/about/for-you/personal-financial-consulting',
             type: 'dropdown',
             content: []
           },
           {
-            name: 'Planejamento de Aposentadoria',
+            name: 'navigation.about.forYou.retirement',
             path: '/about/for-you/retirement-planning',
             type: 'dropdown',
             content: []
@@ -106,18 +106,18 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
         ]
       },
       {
-        name: 'Para Sua Empresa',
+        name: 'navigation.about.forBusiness.title',
         path: '/about/for-business',
         type: 'dropdown',
         content: [
           {
-            name: 'Gestão de Cartões Corporativos',
+            name: 'navigation.about.forBusiness.cards',
             path: '/about/for-business/corporate-cards-management',
             type: 'dropdown',
             content: []
           },
           {
-            name: 'Criação, estruturação e gestão de programas de fidelidade',
+            name: 'navigation.about.forBusiness.loyalty',
             path: '/about/for-business/loyalty-programs',
             type: 'dropdown',
             content: []
@@ -125,18 +125,18 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
         ]
       },
       {
-        name: 'Para ONGs',
+        name: 'navigation.about.forNGOs.title',
         path: '/about/for-ongs',
         type: 'dropdown',
         content: [
           {
-            name: 'Captação de Recursos',
+            name: 'navigation.about.forNGOs.fundraising',
             path: '/about/for-ongs/fundraising',
             type: 'dropdown',
             content: []
           },
           {
-            name: 'Gestão de Projetos Sociais',
+            name: 'navigation.about.forNGOs.management',
             path: '/about/for-ongs/social-projects-management',
             type: 'dropdown',
             content: []
@@ -153,46 +153,59 @@ const ListItem = React.forwardRef<
     hasNestedContent?: boolean
     title?: string
     href?: string
+    description?: string
   }
->(({ className, title, children, hasNestedContent = false, ...props }, ref) => {
-  if (hasNestedContent) {
+>(
+  (
+    {
+      className,
+      title,
+      children,
+      hasNestedContent = false,
+      description,
+      ...props
+    },
+    ref
+  ) => {
+    if (hasNestedContent) {
+      return (
+        <li>
+          <div
+            className={cn(
+              'block w-full select-none rounded-md p-3 text-left leading-none',
+              'hover:bg-accent/50 hover:text-accent-foreground',
+              className
+            )}
+          >
+            <div className="text-sm font-medium leading-none">{title}</div>
+            <div className="mt-2 space-y-1">{children}</div>
+          </div>
+        </li>
+      )
+    }
+
     return (
       <li>
-        <div
-          className={cn(
-            'block w-full select-none rounded-md p-3 text-left leading-none',
-            'hover:bg-accent/50 hover:text-accent-foreground',
-            className
-          )}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <div className="mt-2 space-y-1">{children}</div>
-        </div>
+        <NavigationMenuLink asChild>
+          <Link
+            ref={ref}
+            className={cn(
+              'block w-full select-none rounded-md p-3 leading-none no-underline',
+              'hover:bg-accent/50 hover:text-accent-foreground',
+              className
+            )}
+            href={props.href || '#'}
+          >
+            <div className="text-sm font-medium leading-none">{title}</div>
+            <p className="mt-1 whitespace-pre-line text-sm leading-snug text-muted-foreground">
+              {description || children}
+            </p>
+          </Link>
+        </NavigationMenuLink>
       </li>
     )
   }
-
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          ref={ref}
-          className={cn(
-            'block w-full select-none rounded-md p-3 leading-none no-underline',
-            'hover:bg-accent/50 hover:text-accent-foreground',
-            className
-          )}
-          href={props.href || '#'}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="mt-1 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  )
-})
+)
 ListItem.displayName = 'ListItem'
 
 const NestedContentItem = React.forwardRef<
@@ -221,30 +234,8 @@ const NestedContentItem = React.forwardRef<
 })
 NestedContentItem.displayName = 'NestedContentItem'
 
-// Update the renderNestedContent function type signature
-const renderNestedContent = (
-  content: (NavigationItem | DropdownContentItem)[]
-) => {
-  return content.map((subItem) => (
-    <div key={subItem.path || subItem.name || ''} className="py-1">
-      <Link
-        href={subItem.path || '#'}
-        className="block hover:text-accent-foreground"
-      >
-        {subItem.name || subItem.title}
-      </Link>
-      {'content' in subItem &&
-        subItem.content &&
-        subItem.content.length > 0 && (
-          <div className="ml-4 mt-2">
-            {renderNestedContent(subItem.content)}
-          </div>
-        )}
-    </div>
-  ))
-}
-
 export function Navbar({ hasOffset = true }: NavbarProps) {
+  const pathname = usePathname()
   const { isSticky } = useWindowScroll(0)
   const [menuOpen, setMenuOpen] = useState(false)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
@@ -253,17 +244,43 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
   const [notifications, setNotifications] = useState<Notification[]>([])
 
   const { user, loading } = useAuth()
+
   const router = useRouter()
-  const pathname = usePathname()
   const { cart } = useCart()
   const { openDrawer } = useDrawer()
 
   const cartItemsCount = cart.reduce((acc, item) => acc + item.quantity, 0)
 
-  // Add login tab if user is not authenticated
+  const t = useTranslations()
+
+  const getLocaleText = (key: string | undefined): string => {
+    if (!key) return ''
+    try {
+      return t(key)
+    } catch (error) {
+      console.error('Error fetching locale text:', error)
+      return key
+    }
+  }
+
+  const getStringKey = (item: NavigationItem | DropdownContentItem) => {
+    if (typeof item.name === 'string') return item.name
+    if (item.name)
+      return item.name[pathname.split('/')[1] as keyof typeof item.name]
+    if (item.path) return item.path
+    return Math.random().toString()
+  }
+
+  // Update the navigation items to include login for non-authenticated users
   const navigationItems = [...NAVIGATION_ITEMS]
-  if (!loading && !user) {
-    navigationItems.push({ name: 'Login', path: '/user/sign-in', type: 'link' })
+  if ((!loading && !user) || user === null) {
+    console.log('user', user)
+    console.log('pegou')
+    navigationItems.push({
+      name: 'auth.login',
+      path: '/user/sign-in',
+      type: 'link'
+    })
   }
 
   useEffect(() => {
@@ -310,10 +327,18 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
   }
 
   const handleNavigation = (path: string) => {
+    // Get the current locale from the pathname
+    const currentPath = pathname.split('/')[1]
+    const locale = ['en', 'pt-BR'].includes(currentPath) ? currentPath : 'pt-BR'
+
     if (path === '/') {
-      window.location.href = '/'
+      router.push(`/${locale}`)
     } else {
-      router.push(path)
+      // Ensure the path maintains the locale prefix
+      const newPath = path.startsWith('/')
+        ? `/${locale}${path}`
+        : `/${locale}/${path}`
+      router.push(newPath)
     }
   }
 
@@ -354,6 +379,35 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
     router.push('/notifications')
   }
 
+  const renderNestedContent = (
+    content: (NavigationItem | DropdownContentItem)[]
+  ) => {
+    return content.map((subItem) => (
+      <div
+        key={
+          typeof subItem.name === 'string'
+            ? subItem.path || subItem.name
+            : subItem.path || ''
+        }
+        className="py-1"
+      >
+        <Link
+          href={subItem.path || '#'}
+          className="block hover:text-accent-foreground"
+        >
+          {getLocaleText(subItem.name || subItem.title)}
+        </Link>
+        {'content' in subItem &&
+          subItem.content &&
+          subItem.content.length > 0 && (
+            <div className="ml-4 mt-2">
+              {renderNestedContent(subItem.content)}
+            </div>
+          )}
+      </div>
+    ))
+  }
+
   return (
     <header
       className={`fixed left-0 right-0 top-0 z-[99] w-full transform transition-all duration-300 ${
@@ -379,12 +433,12 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
         <div className="hidden items-center lg:flex">
           <NavigationMenu className="relative">
             <NavigationMenuList>
-              {NAVIGATION_ITEMS.map((item) => (
-                <NavigationMenuItem key={item.name}>
+              {navigationItems.map((item, index) => (
+                <NavigationMenuItem key={`${item.name}-${index}`}>
                   {item.type === 'link' && item.path ? (
                     <NavigationMenuLink asChild>
                       <Link
-                        href={item.path}
+                        href={`/${pathname.split('/')[1]}${item.path}`}
                         className={cn(
                           navigationMenuTriggerStyle(),
                           montserrat.className,
@@ -394,7 +448,7 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
                             : 'text-[#363C41]'
                         )}
                       >
-                        {item.name}
+                        {getLocaleText(item.name)}
                       </Link>
                     </NavigationMenuLink>
                   ) : (
@@ -406,15 +460,15 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
                           'text-[#363C41] hover:text-[#9B297D]'
                         )}
                       >
-                        {item.name}
+                        {getLocaleText(item.name)}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        {item.name === 'Clube 6Wings' ? (
+                        {item.name === 'navigation.club.title' ? (
                           <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                             <li className="row-span-3">
                               <NavigationMenuLink asChild>
                                 <Link
-                                  href="/club"
+                                  href={`/${pathname.split('/')[1]}/club`}
                                   className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                                 >
                                   <Image
@@ -425,40 +479,44 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
                                     className="h-6 w-6"
                                   />
                                   <div className="mb-2 mt-4 text-lg font-medium">
-                                    Clube 6Wings
+                                    {getLocaleText(item.name)}
                                   </div>
                                   <p className="text-sm leading-tight text-muted-foreground">
-                                    Aproveite benefícios exclusivos e acumule
-                                    pontos.
+                                    {t('navigation.club.basic.description')}
                                   </p>
                                 </Link>
                               </NavigationMenuLink>
                             </li>
-                            {item.content?.map((contentItem) => (
+                            {item.content?.map((contentItem, index) => (
                               <ListItem
-                                key={contentItem.href}
-                                href={contentItem.href}
-                                title={contentItem.title}
-                              >
-                                {contentItem.description}
-                              </ListItem>
+                                key={`club-content-${index}`}
+                                href={`/${pathname.split('/')[1]}${contentItem.href}`}
+                                title={getLocaleText(contentItem.title)}
+                                description={getLocaleText(
+                                  contentItem.description
+                                )}
+                              />
                             ))}
                           </ul>
                         ) : (
                           <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                            {item.content?.map((contentItem) => (
-                              <li key={contentItem.path || contentItem.name}>
+                            {item.content?.map((contentItem, index) => (
+                              <li
+                                key={`content-${getStringKey(contentItem)}-${index}`}
+                              >
                                 <div className="block w-full select-none space-y-1 rounded-md p-3 hover:bg-accent/50">
                                   <div className="text-sm font-medium leading-none">
                                     {contentItem.path ? (
                                       <Link
-                                        href={contentItem.path}
+                                        href={`/${pathname.split('/')[1]}${contentItem.path}`}
                                         className="block hover:text-accent-foreground"
                                       >
-                                        {contentItem.name}
+                                        {getLocaleText(contentItem.name)}
                                       </Link>
                                     ) : (
-                                      <span>{contentItem.name}</span>
+                                      <span>
+                                        {getLocaleText(contentItem.name)}
+                                      </span>
                                     )}
                                   </div>
                                   {contentItem.content &&
@@ -487,11 +545,12 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
 
         {/* Adding the right-side components */}
         <div className="flex items-center space-x-4">
+          <LocaleSwitcher />
           <SearchButton />
           <div className="mr-4 hidden items-center justify-center lg:flex">
             {!loading && !user ? (
               <Button
-                label="Criar Conta"
+                label={t('auth.signup')}
                 Icon={() => <ArrowRight color="#363C41" />}
                 iconPosition="right"
                 variant="primary"
@@ -587,8 +646,8 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
           <SearchButton />
         </div>
         <ul className="flex w-full flex-col items-center space-y-6 text-base font-medium tracking-wide">
-          {NAVIGATION_ITEMS.map((item: NavigationItem) => (
-            <li key={item.name}>
+          {navigationItems.map((item: NavigationItem, index) => (
+            <li key={`${getStringKey(item)}-${index}`}>
               <a
                 href={item.path}
                 className="block transition hover:text-[#9B297D] dark:hover:text-[#9B297D]"
@@ -600,7 +659,7 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
                   }
                 }}
               >
-                {item.name}
+                {getLocaleText(item.name)}
               </a>
             </li>
           ))}
@@ -608,7 +667,7 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
         <div className="mx-0 mt-8 flex w-full flex-col items-center justify-center space-y-4 md:flex-row">
           {!loading && !user ? (
             <Button
-              label="Criar Conta"
+              label={t('auth.signup')}
               variant="primary"
               onClick={() => {
                 handleNavigation('/user/sign-up')

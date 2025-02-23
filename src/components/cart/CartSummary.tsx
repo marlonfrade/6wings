@@ -1,32 +1,38 @@
 import { CartSummaryProps } from '@/types/cart'
 import { memo } from 'react'
+import { useFormatter, useTranslations, useLocale } from 'next-intl'
 
-const CartSummary = memo(function CartSummary({
+export const CartSummary = memo(function CartSummary({
   subtotal,
   cashbackPoints
 }: CartSummaryProps) {
+  const t = useTranslations('CartSummary')
+  const format = useFormatter()
+  const locale = useLocale()
+
+  // Get currency based on locale
+  const currency = locale === 'pt-BR' ? 'BRL' : 'USD'
+
   return (
     <div className="mt-8 border-t border-gray-200 pt-8">
       <div className="flex justify-between text-base font-medium text-gray-900">
-        <p>Subtotal</p>
+        <p>{t('subtotal')}</p>
         <p>
-          {new Intl.NumberFormat('pt-BR', {
+          {format.number(subtotal, {
             style: 'currency',
-            currency: 'BRL'
-          }).format(subtotal)}
+            currency
+          })}
         </p>
       </div>
-      <p className="mt-0.5 text-xs text-gray-500">
-        Frete e impostos calculados na finalização da compra.
-      </p>
+      <p className="mt-0.5 text-xs text-gray-500">{t('shippingNote')}</p>
       <div className="mt-6 flex justify-between text-base font-semibold text-green-600">
-        <p>Total de pontos necessários</p>
-        <p>{new Intl.NumberFormat('pt-BR').format(cashbackPoints)} pontos</p>
+        <p>{t('pointsRequired')}</p>
+        <p>
+          {format.number(cashbackPoints)} {t('points')}
+        </p>
       </div>
     </div>
   )
 })
 
 CartSummary.displayName = 'CartSummary'
-
-export default CartSummary

@@ -62,7 +62,7 @@ export const Button = ({
       disabled={disabled}
       {...props}
     >
-      {Icon && (
+      {Icon && iconPosition === 'left' && (
         <Icon className={cn(iconStyles, iconPositionStyles[iconPosition])} />
       )}
       <span
@@ -73,6 +73,9 @@ export const Button = ({
       >
         {state === 'hover' && hoverLabel ? hoverLabel : label}
       </span>
+      {Icon && iconPosition === 'right' && (
+        <Icon className={cn(iconStyles, iconPositionStyles[iconPosition])} />
+      )}
     </button>
   )
 }

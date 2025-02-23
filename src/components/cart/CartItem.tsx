@@ -3,7 +3,7 @@ import { useCart } from '@/providers/cartProvider'
 import { Trash2, Plus, Minus } from 'lucide-react'
 import { CartItemProps } from '@/types/cart'
 
-export default function CartItem({ item }: CartItemProps) {
+export const CartItem = ({ item }: CartItemProps) => {
   const { updateQuantity, removeFromCart } = useCart()
 
   const handleUpdateQuantity = (newQuantity: number) => {

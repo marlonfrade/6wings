@@ -6,6 +6,7 @@ import { Montserrat } from 'next/font/google'
 import Image from 'next/image'
 import { useQuery } from '@tanstack/react-query'
 import { Product } from '@/types/product'
+import { useTranslations } from 'next-intl'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -31,6 +32,7 @@ async function searchProducts(query: string): Promise<SearchResponse> {
 }
 
 export const SearchButton = () => {
+  const t = useTranslations('search')
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [recentSearches, setRecentSearches] = useState<RecentSearch[]>([
@@ -112,11 +114,11 @@ export const SearchButton = () => {
       <form className="relative mx-auto w-max">
         <input
           type="search"
-          className={`peer relative z-10 h-12 w-12 cursor-pointer rounded-full border border-[#363C41] bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-[#9B297D] focus:pl-16 focus:pr-4 ${montserrat.className}`}
+          className={`relative z-10 h-12 w-12 cursor-pointer rounded-full border border-[#363C41] bg-transparent pl-12 outline-none ${montserrat.className}`}
           onClick={() => setIsModalOpen(true)}
           readOnly
         />
-        <Search className="absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-[#363C41] px-3.5 peer-focus:border-lime-300 peer-focus:stroke-[#9B297D]" />
+        <Search className="absolute inset-y-0 my-auto h-8 w-12 border-transparent stroke-[#363C41] px-3.5" />
       </form>
 
       {isModalOpen && (
@@ -129,7 +131,7 @@ export const SearchButton = () => {
               <button
                 onClick={() => setIsModalOpen(false)}
                 className="absolute right-6 top-2 rounded-full p-2 text-gray-500 hover:bg-gray-100"
-                aria-label="Close search"
+                aria-label={t('closeSearch')}
               >
                 <X className="h-6 w-6" />
               </button>
@@ -137,7 +139,7 @@ export const SearchButton = () => {
               <div className="relative mt-8">
                 <input
                   className={`w-full rounded-xl border-2 border-[#363C41] px-12 py-4 text-lg outline-none focus:border-[#9B297D] ${montserrat.className}`}
-                  placeholder="O que você está procurando?"
+                  placeholder={t('placeholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={(e) => {
@@ -153,7 +155,7 @@ export const SearchButton = () => {
 
               <div className="mt-6">
                 <p className="text-xs font-semibold text-[#5D5D5F]">
-                  PESQUISAS RECENTES
+                  {t('recentSearches')}
                 </p>
                 <ul className="mt-2 flex flex-col gap-2">
                   {recentSearches.map((search, index) => (
@@ -170,12 +172,10 @@ export const SearchButton = () => {
 
               <div className="mt-6">
                 <p className="text-xs font-semibold text-[#5D5D5F]">
-                  {searchQuery
-                    ? 'RESULTADOS DA PESQUISA'
-                    : 'PRODUTOS EM DESTAQUE'}
+                  {searchQuery ? t('searchResults') : t('featuredProducts')}
                 </p>
                 {isLoading ? (
-                  <div className="mt-4 text-center">Carregando...</div>
+                  <div className="mt-4 text-center">{t('loading')}</div>
                 ) : (
                   <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
                     {searchResults?.produtos.map(renderProduct)}
