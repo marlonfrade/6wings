@@ -1,0 +1,129 @@
+{
+  "navigation": {
+    "home": "Início",
+    "shopping": "Shopping",
+    "club": {
+      "title": "Clube 6Wings",
+      "description": "Aproveite benefícios exclusivos e acumule pontos.",
+      "basic": {
+        "title": "Plano Básico",
+        "description": "✅ 1000 pontos/mês\n✅ 30% de desconto na compra de pontos\n✅ R$39,90/mês"
+      },
+      "top": {
+        "title": "Plano +TOP",
+        "description": "✅ 4000 pontos/mês\n✅ 35% de desconto na compra de pontos\n✅ R$129,90/mês"
+      }
+    },
+    "partners": "Seja Parceiro",
+    "points": "6Wings Pontos",
+    "about": {
+      "title": "Conheça a 6Wings",
+      "forYou": {
+        "title": "Para Você",
+        "financial": "Consultoria Financeira Pessoal",
+        "retirement": "Planejamento de Aposentadoria"
+      },
+      "forBusiness": {
+        "title": "Para Sua Empresa",
+        "cards": "Gestão de Cartões Corporativos",
+        "loyalty": "Criação, estruturação e gestão de programas de fidelidade"
+      },
+      "forNGOs": {
+        "title": "Para ONGs",
+        "fundraising": "Captação de Recursos",
+        "management": "Gestão de Projetos Sociais"
+      }
+    }
+  },
+  "auth": {
+    "login": "Entrar",
+    "signup": "Criar Conta",
+    "logout": "Sair",
+    "myAccount": "Minha Conta"
+  },
+  "search": {
+    "placeholder": "O que você está procurando?",
+    "recentSearches": "PESQUISAS RECENTES",
+    "featuredProducts": "PRODUTOS EM DESTAQUE",
+    "searchResults": "RESULTADOS DA PESQUISA",
+    "loading": "Carregando...",
+    "closeSearch": "Fechar busca"
+  },
+  "cart": {
+    "title": "Meu Carrinho 6Wings",
+    "empty": "Seu carrinho está vazio.",
+    "loading": "Carregando carrinho...",
+    "addCoupon": "Adicionar código de cupom",
+    "subtotal": "Subtotal",
+    "shipping": "Frete e impostos calculados na finalização da compra.",
+    "pointsNeeded": "Total de pontos necessários",
+    "points": "pontos",
+    "checkout": "Finalizar Compra",
+    "continueShopping": "Continuar Comprando",
+    "loginToUsePoints": "Faça login para utilizar seus pontos",
+    "signInOrRegister": "Criar Conta / Entrar",
+    "yourPoints": "Seus pontos",
+    "needMorePoints": "Você precisa de mais {points} pontos para esta compra"
+  },
+  "assistant": {
+    "welcome": "Olá! Como posso ajudar com suas compras hoje?",
+    "suggestions": {
+      "promotions": "Ver promoções do dia",
+      "tracking": "Rastrear meu pedido"
+    },
+    "input": {
+      "placeholder": "Escreva sua mensagem..."
+    },
+    "actions": {
+      "send": "Enviar",
+      "cancel": "Cancelar",
+      "edit": "Editar",
+      "copy": "Copiar",
+      "refresh": "Atualizar",
+      "previous": "Anterior",
+      "next": "Próximo",
+      "scrollDown": "Rolar para baixo"
+    },
+    "branch": {
+      "separator": "de"
+    }
+  },
+  "cookies": {
+    "title": "Configurações de Cookies",
+    "message": "Nós e parceiros selecionados utilizamos cookies para personalizar sua experiência, medir o desempenho do site e fornecer conteúdo relevante. Ao clicar em \"Aceitar cookies\", você concorda com o uso dessas tecnologias.",
+    "accept": "Aceitar todos",
+    "settings": "Configurações",
+    "types": {
+      "necessary": {
+        "title": "Cookies estritamente necessários",
+        "description": "Essenciais para o funcionamento do site"
+      },
+      "preferences": {
+        "title": "Cookies de preferências",
+        "description": "Armazenam suas preferências de navegação"
+      },
+      "analytics": {
+        "title": "Cookies de análise de uso",
+        "description": "Nos ajudam a entender como você usa o site"
+      },
+      "marketing": {
+        "title": "Cookies de marketing",
+        "description": "Utilizados para publicidade direcionada"
+      }
+    },
+    "save": "Salvar preferências"
+  },
+  "homepage": {
+    "carousel": {
+      "title": "Troque seus pontos 6wings por lembranças",
+      "subtitle": "Troque seus pontos por lembranças no Cristo Redentor, o monumento mais famoso do Rio de Janeiro",
+      "button": "Comprar e Pontue"
+    }
+  },
+  "CartSummary": {
+    "subtotal": "Subtotal",
+    "shippingNote": "Frete e impostos calculados na finalização da compra.",
+    "pointsRequired": "Total de pontos necessários",
+    "points": "pontos"
+  }
+} 

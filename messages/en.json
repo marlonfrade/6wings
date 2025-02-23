@@ -1,0 +1,121 @@
+{
+  "navigation": {
+    "home": "Home",
+    "shopping": "Shopping",
+    "club": {
+      "title": "6Wings Club",
+      "basic": {
+        "title": "Basic Plan",
+        "description": "Start your journey with basic benefits"
+      },
+      "top": {
+        "title": "Top Plan",
+        "description": "Premium benefits for exclusive members"
+      }
+    },
+    "partners": "Become a Partner",
+    "points": "6Wings Points",
+    "about": {
+      "title": "About 6Wings",
+      "forYou": {
+        "title": "For You",
+        "financial": "Personal Financial Consulting",
+        "retirement": "Retirement Planning"
+      },
+      "forBusiness": {
+        "title": "For Your Business",
+        "cards": "Corporate Card Management",
+        "loyalty": "Creation, structuring and management of loyalty programs"
+      },
+      "forNGOs": {
+        "title": "For NGOs",
+        "fundraising": "Fundraising",
+        "management": "Social Project Management"
+      }
+    }
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Create Account",
+    "logout": "Logout",
+    "myAccount": "My Account"
+  },
+  "search": {
+    "placeholder": "What are you looking for?",
+    "recentSearches": "RECENT SEARCHES",
+    "featuredProducts": "FEATURED PRODUCTS",
+    "searchResults": "SEARCH RESULTS",
+    "loading": "Loading...",
+    "closeSearch": "Close search"
+  },
+  "cart": {
+    "title": "My 6Wings Cart",
+    "empty": "Your cart is empty.",
+    "loading": "Loading cart...",
+    "addCoupon": "Add coupon code",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping and taxes calculated at checkout.",
+    "pointsNeeded": "Total points needed",
+    "points": "points",
+    "checkout": "Checkout",
+    "continueShopping": "Continue Shopping",
+    "loginToUsePoints": "Sign in to use your points",
+    "signInOrRegister": "Sign In / Register",
+    "yourPoints": "Your points",
+    "needMorePoints": "You need {points} more points for this purchase"
+  },
+  "assistant": {
+    "welcome": "Hello! How can I help with your shopping today?",
+    "suggestions": {
+      "promotions": "See today's promotions",
+      "tracking": "Track my order"
+    },
+    "input": {
+      "placeholder": "Write your message..."
+    },
+    "actions": {
+      "send": "Send",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "copy": "Copy",
+      "refresh": "Refresh",
+      "previous": "Previous",
+      "next": "Next",
+      "scrollDown": "Scroll to bottom"
+    },
+    "branch": {
+      "separator": "of"
+    }
+  },
+  "cookies": {
+    "title": "Cookie Settings",
+    "message": "We and selected partners use cookies to personalize your experience, measure site performance and deliver relevant content. By clicking \"Accept cookies\", you agree to the use of these technologies.",
+    "accept": "Accept all",
+    "settings": "Settings",
+    "types": {
+      "necessary": {
+        "title": "Strictly necessary cookies",
+        "description": "Essential for site functionality"
+      },
+      "preferences": {
+        "title": "Preference cookies",
+        "description": "Store your browsing preferences"
+      },
+      "analytics": {
+        "title": "Analytics cookies",
+        "description": "Help us understand how you use the site"
+      },
+      "marketing": {
+        "title": "Marketing cookies",
+        "description": "Used for targeted advertising"
+      }
+    },
+    "save": "Save preferences"
+  },
+  "CartSummary": {
+    "subtotal": "Subtotal",
+    "shippingNote": "Shipping and taxes calculated at checkout.",
+    "pointsRequired": "Total points required",
+    "points": "points"
+  }
+} 
