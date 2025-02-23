@@ -117,5 +117,20 @@
     "shippingNote": "Shipping and taxes calculated at checkout.",
     "pointsRequired": "Total points required",
     "points": "points"
+  },
+  "homepage": {
+    "hero": {
+      "cristo": {
+        "title": "Exchange your 6Wings Points for Souvenirs",
+        "description": "Exchange your points for souvenirs at Christ the Redeemer, Rio de Janeiro's most famous monument",
+        "altText": "Christ the Redeemer Banner"
+      },
+      "aquario": {
+        "title": "Exchange your 6Wings Points for Souvenirs",
+        "description": "Exchange your points for souvenirs at Aqua Rio, Rio de Janeiro's largest aquatic park",
+        "altText": "Aqua Rio Banner"
+      },
+      "cta": "SHOP AND EARN POINTS"
+    }
   }
 } 

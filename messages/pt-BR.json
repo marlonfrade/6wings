@@ -118,6 +118,19 @@
       "title": "Troque seus pontos 6wings por lembranças",
       "subtitle": "Troque seus pontos por lembranças no Cristo Redentor, o monumento mais famoso do Rio de Janeiro",
       "button": "Comprar e Pontue"
+    },
+    "hero": {
+      "cristo": {
+        "title": "Troque seus Pontos 6Wings por Lembranças",
+        "description": "Troque seus pontos por lembranças no Cristo Redentor, o monumento mais famoso do Rio de Janeiro",
+        "altText": "Banner Cristo"
+      },
+      "aquario": {
+        "title": "Troque seus Pontos 6Wings por Lembranças",
+        "description": "Troque seus pontos por lembranças no Aqua Rio, o maior parque aquático do Rio de Janeiro",
+        "altText": "Banner Aqua Rio"
+      },
+      "cta": "COMPRE E PONTUE"
     }
   },
   "CartSummary": {
