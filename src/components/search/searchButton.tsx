@@ -114,7 +114,7 @@ export const SearchButton = () => {
       <form className="relative mx-auto w-max">
         <input
           type="search"
-          className={`relative z-10 h-12 w-12 cursor-pointer rounded-full border border-[#363C41] bg-transparent pl-12 outline-none ${montserrat.className}`}
+          className={`relative z-10 h-10 w-10 cursor-pointer rounded-full bg-transparent pl-12 outline-none ${montserrat.className}`}
           onClick={() => setIsModalOpen(true)}
           readOnly
         />
