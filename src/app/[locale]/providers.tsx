@@ -15,12 +15,12 @@ import { type Locale } from '@/i18n/routing'
 interface ProvidersProps {
   children: ReactNode
   messages: AbstractIntlMessages
-  locale: Locale
+  locale: string
 }
 
 export function Providers({ children, messages, locale }: ProvidersProps) {
   return (
-    <NextIntlProvider messages={messages} locale={locale}>
+    <NextIntlProvider messages={messages} locale={locale as Locale}>
       <QueryProvider>
         <ChatProvider>
           <AuthProvider>

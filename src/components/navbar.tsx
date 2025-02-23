@@ -22,7 +22,7 @@ import {
 } from '@/components/ui/navigation-menu'
 
 import { useAuth } from '@/providers/authProvider'
-import { useCart } from '@/providers/cartProvider'
+import { useCart } from '@/hooks/useCart'
 import { useDrawer } from '@/providers/drawerProvider'
 import useWindowScroll from '@/hooks/useWindowScroll'
 
@@ -274,8 +274,6 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
   // Update the navigation items to include login for non-authenticated users
   const navigationItems = [...NAVIGATION_ITEMS]
   if ((!loading && !user) || user === null) {
-    console.log('user', user)
-    console.log('pegou')
     navigationItems.push({
       name: 'auth.login',
       path: '/user/sign-in',

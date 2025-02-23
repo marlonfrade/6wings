@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useCart } from '@/providers/cartProvider'
+import { useCart } from '@/hooks/useCart'
 import { Trash2, Plus, Minus } from 'lucide-react'
 import { CartItem as CartItemType } from '@/types/cart'
 

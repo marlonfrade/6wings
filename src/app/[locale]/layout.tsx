@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { Montserrat, Prompt } from 'next/font/google'
 import { Providers } from '@/app/providers'
-import CartDrawer from '@/components/cart/cartDrawer'
+import CartDrawer from '@/components/cart/CartDrawer'
 import CookieConsent from '@/components/cookies/cookieConsent'
-import { getMessages } from 'next-intl/server'
+import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { routing, type Locale } from '@/i18n/routing'
 
@@ -45,19 +45,25 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
+type Params = Promise<{ locale: Locale }>
+
+interface RootLayoutProps {
+  children: React.ReactNode
+  params: Params
+}
+
 export default async function RootLayout({
   children,
   params
-}: {
-  children: React.ReactNode
-  params: { locale: Locale }
-}) {
+}: RootLayoutProps) {
   const { locale } = await params
-
   // Validate locale before using it
-  if (!routing.locales.includes(locale as Locale)) {
+  if (!routing.locales.includes(locale)) {
     notFound()
   }
+
+  // This enables static rendering
+  setRequestLocale(locale)
 
   // Get messages after locale validation
   let messages
