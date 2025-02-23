@@ -3,12 +3,9 @@ import { Montserrat, Prompt } from 'next/font/google'
 import { Providers } from '@/app/providers'
 import CartDrawer from '@/components/cart/cartDrawer'
 import CookieConsent from '@/components/cookies/cookieConsent'
-import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
-import { routing } from '@/i18n/routing'
-
-import type { Locale } from '@/i18n/routing'
+import { routing, type Locale } from '@/i18n/routing'
 
 import './globals.css'
 
@@ -53,7 +50,7 @@ export default async function RootLayout({
   params
 }: {
   children: React.ReactNode
-  params: { locale: string }
+  params: { locale: Locale }
 }) {
   const { locale } = await params
 
@@ -78,13 +75,11 @@ export default async function RootLayout({
       className={`${montserrat.variable} ${prompt.variable}`}
     >
       <body className="flex min-h-screen flex-col antialiased">
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          <Providers>
-            {children}
-            <CartDrawer />
-            <CookieConsent />
-          </Providers>
-        </NextIntlClientProvider>
+        <Providers messages={messages} locale={locale}>
+          {children}
+          <CartDrawer />
+          <CookieConsent />
+        </Providers>
       </body>
     </html>
   )

@@ -7,24 +7,32 @@ import { DrawerProvider } from '@/providers/drawerProvider'
 import { ToastProvider } from '@/providers/toastProvider'
 import { QueryProvider } from '@/providers/queryProvider'
 import { ChatProvider } from '@/providers/chatProvider'
+import { NextIntlProvider } from '@/providers/nextIntlProvider'
+import { AbstractIntlMessages } from 'next-intl'
+
+import { type Locale } from '@/i18n/routing'
 
 interface ProvidersProps {
   children: ReactNode
+  messages: AbstractIntlMessages
+  locale: Locale
 }
 
-export function Providers({ children }: ProvidersProps) {
+export function Providers({ children, messages, locale }: ProvidersProps) {
   return (
-    <ChatProvider>
+    <NextIntlProvider messages={messages} locale={locale}>
       <QueryProvider>
-        <AuthProvider>
-          <CartProvider>
-            <DrawerProvider>
-              <ToastProvider />
-              {children}
-            </DrawerProvider>
-          </CartProvider>
-        </AuthProvider>
+        <ChatProvider>
+          <AuthProvider>
+            <CartProvider>
+              <DrawerProvider>
+                <ToastProvider />
+                {children}
+              </DrawerProvider>
+            </CartProvider>
+          </AuthProvider>
+        </ChatProvider>
       </QueryProvider>
-    </ChatProvider>
+    </NextIntlProvider>
   )
 }
