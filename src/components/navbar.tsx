@@ -43,7 +43,6 @@ const montserrat = Montserrat({
   weight: ['300', '400', '500', '700']
 })
 
-// Update the NAVIGATION_ITEMS constant to match dictionary structure
 const NAVIGATION_ITEMS: NavigationItem[] = [
   {
     name: 'navigation.home',
@@ -271,16 +270,6 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
     return Math.random().toString()
   }
 
-  // Update the navigation items to include login for non-authenticated users
-  const navigationItems = [...NAVIGATION_ITEMS]
-  if ((!loading && !user) || user === null) {
-    navigationItems.push({
-      name: 'auth.login',
-      path: '/user/sign-in',
-      type: 'link'
-    })
-  }
-
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -431,7 +420,7 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
         <div className="hidden items-center lg:flex">
           <NavigationMenu className="relative">
             <NavigationMenuList>
-              {navigationItems.map((item, index) => (
+              {NAVIGATION_ITEMS.map((item, index) => (
                 <NavigationMenuItem key={`${item.name}-${index}`}>
                   {item.type === 'link' && item.path ? (
                     <NavigationMenuLink asChild>
@@ -544,20 +533,8 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
         {/* Adding the right-side components */}
         <div className="flex items-center space-x-4">
           <LocaleSwitcher />
-          <SearchButton />
-          <div className="mr-4 hidden items-center justify-center lg:flex">
-            {!loading && !user ? (
-              <Button
-                label={t('auth.signup')}
-                Icon={() => <ArrowRight color="#363C41" />}
-                iconPosition="right"
-                variant="primary"
-                onClick={() => handleNavigation('/user/sign-up')}
-                hoverLabel="Criar Conta"
-                state="normal"
-                className="w-full"
-              />
-            ) : (
+          <div className="mr-4 hidden items-center justify-center space-x-2 lg:flex">
+            {user ? (
               <>
                 <div className="mr-4">
                   <NotificationMenu
@@ -593,6 +570,27 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
                   />
                 </div>
               </>
+            ) : (
+              <>
+                <Button
+                  label={t('auth.login')}
+                  variant="secondary"
+                  onClick={() => handleNavigation('/user/sign-in')}
+                  hoverLabel={t('auth.login')}
+                  state="normal"
+                  className="w-auto"
+                />
+                <Button
+                  label={t('auth.signup')}
+                  Icon={() => <ArrowRight color="#363C41" />}
+                  iconPosition="right"
+                  variant="primary"
+                  onClick={() => handleNavigation('/user/sign-up')}
+                  hoverLabel={t('auth.signup')}
+                  state="normal"
+                  className="w-auto"
+                />
+              </>
             )}
           </div>
 
@@ -612,6 +610,7 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
               </span>
             )}
           </div>
+          <SearchButton />
 
           {/* Mobile menu button */}
           <button
@@ -644,7 +643,7 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
           <SearchButton />
         </div>
         <ul className="flex w-full flex-col items-center space-y-6 text-base font-medium tracking-wide">
-          {navigationItems.map((item: NavigationItem, index) => (
+          {NAVIGATION_ITEMS.map((item: NavigationItem, index) => (
             <li key={`${getStringKey(item)}-${index}`}>
               <a
                 href={item.path}
@@ -663,49 +662,74 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
           ))}
         </ul>
         <div className="mx-0 mt-8 flex w-full flex-col items-center justify-center space-y-4 md:flex-row">
-          {!loading && !user ? (
-            <Button
-              label={t('auth.signup')}
-              variant="primary"
-              onClick={() => {
-                handleNavigation('/user/sign-up')
-                toggleMenu()
-              }}
-              centered
-              className="w-full"
-              hoverLabel="Criar Conta"
-              Icon={() => null}
-              iconPosition="right"
-              state="normal"
-            />
+          {user ? (
+            <>
+              <div className="mr-4">
+                <NotificationMenu
+                  notifications={notifications}
+                  onMarkAsRead={handleMarkAsRead}
+                  onViewAll={handleViewAllNotifications}
+                />
+              </div>
+              <div className="user-menu-container relative w-full">
+                <button
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="flex w-full items-center justify-center space-x-2 rounded-md border border-gray-300 px-4 py-2 focus:outline-none"
+                >
+                  <div className="h-8 w-8 overflow-hidden rounded-full bg-gray-200">
+                    {avatarUrl ? (
+                      <Image
+                        src={avatarUrl}
+                        alt={`Avatar ${user?.nome || 'User'}`}
+                        width={32}
+                        height={32}
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-gray-300 text-sm font-semibold text-gray-600">
+                        {(user?.nome || user?.email || 'U')[0].toUpperCase()}
+                      </div>
+                    )}
+                  </div>
+                  <span className="text-gray-700">Minha Conta</span>
+                </button>
+                <UserMenu
+                  isOpen={isUserMenuOpen}
+                  onClose={() => setIsUserMenuOpen(false)}
+                />
+              </div>
+            </>
           ) : (
-            <div className="user-menu-container relative w-full">
-              <button
-                onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className="flex w-full items-center justify-center space-x-2 rounded-md border border-gray-300 px-4 py-2 focus:outline-none"
-              >
-                <div className="h-8 w-8 overflow-hidden rounded-full bg-gray-200">
-                  {avatarUrl ? (
-                    <Image
-                      src={avatarUrl}
-                      alt={`Avatar ${user?.nome || 'User'}`}
-                      width={32}
-                      height={32}
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-gray-300 text-sm font-semibold text-gray-600">
-                      {(user?.nome || user?.email || 'U')[0].toUpperCase()}
-                    </div>
-                  )}
-                </div>
-                <span className="text-gray-700">Minha Conta</span>
-              </button>
-              <UserMenu
-                isOpen={isUserMenuOpen}
-                onClose={() => setIsUserMenuOpen(false)}
+            <>
+              <Button
+                label={t('auth.login')}
+                variant="secondary"
+                onClick={() => {
+                  handleNavigation('/user/sign-in')
+                  toggleMenu()
+                }}
+                centered
+                className="mb-2 w-full"
+                hoverLabel={t('auth.login')}
+                Icon={() => null}
+                iconPosition="right"
+                state="normal"
               />
-            </div>
+              <Button
+                label={t('auth.signup')}
+                variant="primary"
+                onClick={() => {
+                  handleNavigation('/user/sign-up')
+                  toggleMenu()
+                }}
+                centered
+                className="w-full"
+                hoverLabel={t('auth.signup')}
+                Icon={() => null}
+                iconPosition="right"
+                state="normal"
+              />
+            </>
           )}
         </div>
       </div>
