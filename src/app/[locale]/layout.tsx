@@ -1,13 +1,33 @@
 import type { Metadata } from 'next'
+import { Montserrat, Prompt } from 'next/font/google'
 import { Providers } from '@/app/providers'
 import CartDrawer from '@/components/cart/cartDrawer'
 import CookieConsent from '@/components/cookies/cookieConsent'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { routing, type Locale } from '@/i18n/routing'
-import { montserrat, prompt } from '@/config/fonts'
 
 import './globals.css'
+
+// Optimize font configurations
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial'],
+  variable: '--font-montserrat' // Add variable for CSS usage
+})
+
+const prompt = Prompt({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial'],
+  variable: '--font-prompt', // Add variable for CSS usage
+  adjustFontFallback: true
+})
 
 // Basic metadata configuration
 export const metadata: Metadata = {
