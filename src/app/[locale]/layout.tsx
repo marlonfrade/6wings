@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Montserrat, Prompt } from 'next/font/google'
 import { Providers } from '@/app/providers'
-import CartDrawer from '@/components/cart/CartDrawer'
+import CartDrawer from '@/components/cart/cartDrawer'
 import CookieConsent from '@/components/cookies/cookieConsent'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
