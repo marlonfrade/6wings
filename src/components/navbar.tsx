@@ -242,7 +242,7 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
   const [isClient, setIsClient] = useState(false)
   const [notifications, setNotifications] = useState<Notification[]>([])
 
-  const { user, loading } = useAuth()
+  const { user } = useAuth()
 
   const router = useRouter()
   const { cart } = useCart()
