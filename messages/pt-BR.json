@@ -35,6 +35,38 @@
       }
     }
   },
+  "homepage": {
+    "carousel": {
+      "cristo": {
+        "title": "Troque seus pontos 6wings por",
+        "highlight": "Experiências",
+        "description": "Utilize seus pontos para embarcar no Trem do Corcovado e visitar o Cristo Redentor, o monumento mais icônico do Rio de Janeiro",
+        "ctaText": "Compre com Pontos",
+        "altText": "Banner Cristo Redentor"
+      },
+      "aquario": {
+        "title": "Troque seus pontos 6wings por",
+        "highlight": "Ingressos",
+        "description": "Troque seus pontos por ingressos no Aqua Rio, o maior parque aquático do Rio de Janeiro",
+        "ctaText": "Comprar com Pontos",
+        "altText": "Banner Aqua Rio"
+      },
+      "yabnabi": {
+        "title": "Troque seus pontos 6Wings por",
+        "highlight": "Turismo",
+        "description": "Utilize seus pontos para vivenciar o Turismo Yabnabi e mergulhar na cultura do povo Paiter Suruí na Amazônia",
+        "ctaText": "Comprar com Pontos",
+        "altText": "Banner Turismo Yabnabi"
+      },
+      "canoagem": {
+        "title": "Troque seus pontos 6Wings por",
+        "highlight": "Aventuras",
+        "description": "Utilize seus pontos para explorar as águas cristalinas de Paraty em uma emocionante experiência de canoagem, navegando por manguezais e praias paradisíacas",
+        "ctaText": "Comprar com Pontos",
+        "altText": "Banner Boramar"
+      }
+    }
+  },
   "auth": {
     "login": "Entrar",
     "signup": "Criar Conta",
@@ -63,7 +95,13 @@
     "loginToUsePoints": "Faça login para utilizar seus pontos",
     "signInOrRegister": "Criar Conta / Entrar",
     "yourPoints": "Seus pontos",
-    "needMorePoints": "Você precisa de mais {points} pontos para esta compra"
+    "needMorePoints": "Você precisa de mais {points} pontos para esta compra",
+    "summary": {
+      "subtotal": "Subtotal",
+      "shippingNote": "Frete e impostos calculados na finalização da compra.",
+      "pointsRequired": "Total de pontos necessários",
+      "points": "pontos"
+    }
   },
   "assistant": {
     "welcome": "Olá! Como posso ajudar com suas compras hoje?",
@@ -112,31 +150,5 @@
       }
     },
     "save": "Salvar preferências"
-  },
-  "homepage": {
-    "carousel": {
-      "title": "Troque seus pontos 6wings por lembranças",
-      "subtitle": "Troque seus pontos por lembranças no Cristo Redentor, o monumento mais famoso do Rio de Janeiro",
-      "button": "Comprar e Pontue"
-    },
-    "hero": {
-      "cristo": {
-        "title": "Troque seus Pontos 6Wings por Lembranças",
-        "description": "Troque seus pontos por lembranças no Cristo Redentor, o monumento mais famoso do Rio de Janeiro",
-        "altText": "Banner Cristo"
-      },
-      "aquario": {
-        "title": "Troque seus Pontos 6Wings por Lembranças",
-        "description": "Troque seus pontos por lembranças no Aqua Rio, o maior parque aquático do Rio de Janeiro",
-        "altText": "Banner Aqua Rio"
-      },
-      "cta": "COMPRE E PONTUE"
-    }
-  },
-  "CartSummary": {
-    "subtotal": "Subtotal",
-    "shippingNote": "Frete e impostos calculados na finalização da compra.",
-    "pointsRequired": "Total de pontos necessários",
-    "points": "pontos"
   }
 } 
