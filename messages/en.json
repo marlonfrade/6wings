@@ -4,13 +4,14 @@
     "shopping": "Shopping",
     "club": {
       "title": "6Wings Club",
+      "description": "Enjoy exclusive benefits and earn points.",
       "basic": {
         "title": "Basic Plan",
-        "description": "Start your journey with basic benefits"
+        "description": "✅ 1000 points/month\n✅ 30% discount on points purchase\n✅ $39.90/month"
       },
       "top": {
-        "title": "Top Plan",
-        "description": "Premium benefits for exclusive members"
+        "title": "+TOP Plan",
+        "description": "✅ 4000 points/month\n✅ 35% discount on points purchase\n✅ $129.90/month"
       }
     },
     "partners": "Become a Partner",
@@ -62,7 +63,13 @@
     "loginToUsePoints": "Sign in to use your points",
     "signInOrRegister": "Sign In / Register",
     "yourPoints": "Your points",
-    "needMorePoints": "You need {points} more points for this purchase"
+    "needMorePoints": "You need {points} more points for this purchase",
+    "summary": {
+      "subtotal": "Subtotal",
+      "shippingNote": "Shipping and taxes calculated at checkout.",
+      "pointsRequired": "Total points required",
+      "points": "points"
+    }
   },
   "assistant": {
     "welcome": "Hello! How can I help with your shopping today?",
@@ -112,25 +119,36 @@
     },
     "save": "Save preferences"
   },
-  "CartSummary": {
-    "subtotal": "Subtotal",
-    "shippingNote": "Shipping and taxes calculated at checkout.",
-    "pointsRequired": "Total points required",
-    "points": "points"
-  },
   "homepage": {
-    "hero": {
+    "carousel": {
       "cristo": {
-        "title": "Exchange your 6Wings Points for Souvenirs",
-        "description": "Exchange your points for souvenirs at Christ the Redeemer, Rio de Janeiro's most famous monument",
+        "title": "Exchange your 6wings points for",
+        "highlight": "Experiences",
+        "description": "Use your points to ride the Corcovado Train and visit Christ the Redeemer, Rio de Janeiro's most iconic monument",
+        "ctaText": "Buy with Points",
         "altText": "Christ the Redeemer Banner"
       },
       "aquario": {
-        "title": "Exchange your 6Wings Points for Souvenirs",
-        "description": "Exchange your points for souvenirs at Aqua Rio, Rio de Janeiro's largest aquatic park",
+        "title": "Exchange your 6wings points for",
+        "highlight": "Tickets",
+        "description": "Exchange your points for tickets at Aqua Rio, Rio de Janeiro's largest aquatic park",
+        "ctaText": "Buy with Points",
         "altText": "Aqua Rio Banner"
       },
-      "cta": "SHOP AND EARN POINTS"
+      "yabnabi": {
+        "title": "Exchange your 6wings points for",
+        "highlight": "Tourism",
+        "description": "Use your points to experience Yabnabi Tourism and immerse yourself in the culture of the Paiter Suruí people in the Amazon",
+        "ctaText": "Buy with Points",
+        "altText": "Yabnabi Tourism Banner"
+      },
+      "canoagem": {
+        "title": "Exchange your 6wings points for",
+        "highlight": "Adventures",
+        "description": "Use your points to explore the crystal-clear waters of Paraty in an exciting canoeing experience, navigating through mangroves and paradise beaches",
+        "ctaText": "Buy with Points",
+        "altText": "Boramar Banner"
+      }
     }
   }
 } 
