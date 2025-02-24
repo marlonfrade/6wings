@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useCallback, useEffect, useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import Typography from '@/components/typography'
@@ -26,6 +26,7 @@ interface CarouselProps {
 
 const Carousel = ({ slides, autoPlayInterval = 4000 }: CarouselProps) => {
   const t = useTranslations()
+  const locale = useLocale()
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
 
@@ -166,18 +167,27 @@ const Carousel = ({ slides, autoPlayInterval = 4000 }: CarouselProps) => {
               className="relative flex h-full w-full flex-[0_0_100%] items-center justify-center"
             >
               <div
-                className="flex h-full w-full max-w-[1540px] items-start justify-start rounded-3xl bg-cover bg-center p-5 sm:p-10 md:p-16 lg:p-20 xl:p-[70px_174px]"
+                className="flex h-full w-full max-w-[1540px] items-start justify-start rounded-3xl bg-cover bg-center px-4 py-5 sm:py-10 md:py-16 lg:py-20 xl:p-[70px_100px]"
                 style={{ backgroundImage: `url(${slide.image})` }}
               >
-                <div className="relative">
-                  <div className="flex max-w-[700px] flex-col lg:block">
+                <div className="relative w-full">
+                  <div className="flex max-w-[900px] flex-col lg:block">
                     {slide.title && (
-                      <Typography variant="h1" className="text-white">
+                      <Typography
+                        variant="h1"
+                        className="relative z-20 text-white"
+                      >
                         {t(slide.title)}
                       </Typography>
                     )}
                     {slide.highlight && (
-                      <span className="font-prompt relative z-[1] mt-4 inline-flex w-fit transform items-center justify-center rounded-[20px] bg-primary px-6 py-4 text-2xl font-extrabold leading-[125%] tracking-[-1.48px] text-white lg:absolute lg:left-[60%] lg:top-[22%] lg:mt-0 lg:-rotate-6 lg:text-[65px]">
+                      <span
+                        className={`relative z-10 mt-4 inline-flex w-fit transform items-center justify-center rounded-[20px] bg-primary/90 px-6 py-4 font-prompt text-2xl font-extrabold leading-[125%] tracking-[-1.48px] text-white backdrop-blur-sm lg:absolute lg:mt-0 lg:-rotate-6 lg:text-[65px] ${
+                          locale === 'en'
+                            ? 'lg:left-[27%] lg:top-[22%]'
+                            : 'lg:left-[31%] lg:top-[20%]'
+                        }`}
+                      >
                         {t(slide.highlight)}
                       </span>
                     )}

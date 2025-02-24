@@ -41,7 +41,7 @@ interface TypographyProps {
 }
 
 const variantStyles: Record<TypographyVariant, string> = {
-  h1: `text-[#363C41] ${prompt.variable} font-prompt text-4xl md:text-5xl lg:text-[74px] font-extrabold leading-tight md:leading-[125%] tracking-tight md:tracking-[-1.48px] z-[100000]`,
+  h1: `text-[#363C41] ${prompt.variable} font-prompt text-4xl md:text-5xl lg:text-[74px] font-extrabold leading-tight md:leading-[125%] tracking-tight md:tracking-[-1.48px]`,
   h2: `text-[#363C41] ${prompt.variable} font-prompt text-2xl md:text-3xl lg:text-[32px] font-extrabold leading-normal tracking-tight md:tracking-[-0.64px]`,
   h3: `text-[#363C41] ${montserrat.variable} font-montserrat text-lg md:text-xl lg:text-[20px] font-extrabold leading-snug`,
   h4: `text-[#9B297D] ${montserrat.variable} font-montserrat text-base md:text-lg lg:text-[18px] font-extrabold leading-relaxed`,
@@ -62,7 +62,7 @@ const variantStyles: Record<TypographyVariant, string> = {
   'advert-subtitle-3': `text-[#363C41] ${montserrat.variable} font-montserrat text-[10px] font-medium leading-[135%] tracking-[-2%]`,
   'quick-promotions': `text-[#363C41] ${prompt.variable} font-prompt text-[47px] font-bold leading-[125%] tracking-[-2%]`,
   'promotion-card-price': `text-[#363C41] ${montserrat.variable} font-montserrat text-[26px] font-bold leading-[120%] tracking-[0px]`,
-  navigation: `${montserrat.variable} font-montserrat text-xs md:text-sm lg:text-[13px] font-medium leading-snug tracking-wider uppercase`,
+  navigation: `${montserrat.variable} font-montserrat text-xs md:text-sm lg:text-[12px] font-medium leading-snug tracking-wider uppercase`,
   'chatbot-title': `${prompt.variable} font-prompt text-[40px] font-bold leading-[120%] tracking-[-2%] text-white`,
   'chatbot-info': `text-[#363C41] ${montserrat.variable} font-montserrat text-[13px] font-normal leading-[130%] tracking-[0%]`,
   'product-title': `${prompt.variable} font-extrabold leading-[auto] tracking-[-2%]`,
