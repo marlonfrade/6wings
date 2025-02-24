@@ -6,7 +6,7 @@ import { DateRange } from 'react-day-picker'
 import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import AirportSelect from '@/components/search/airportSelect'
-import { DateRangePicker } from '@/components/search/DateRangePicker'
+import { DateRangePicker } from '@/components/search/dateRangePicker'
 import { Airport } from '@/types/airport'
 
 const travelOptions = [
