@@ -8,7 +8,7 @@ export const CartSummary = memo(function CartSummary({
   subtotal,
   cashbackPoints
 }: CartSummaryProps) {
-  const t = useTranslations('CartSummary')
+  const t = useTranslations('cart.summary')
   const format = useFormatter()
   const locale = useLocale()
 
