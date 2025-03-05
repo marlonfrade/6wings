@@ -93,7 +93,13 @@
           "quote-error": "Error creating quote",
           "select-date": "Select a date",
           "select-range": "Select a date range",
-          "select-return": "Select a return date"
+          "select-return": "Select a return date",
+          "loading": "Loading airports...",
+          "airport-placeholder-landing": "Destination city or airport",
+          "airport-placeholder-takeoff": "Origin city or airport",
+          "error-loading-airports": "Error loading airports",
+          "no-airports-found": "No airports found",
+          "search-airport-min-length": "Type to search"
         },
         "accommodation": {
           "title": "Find <highlight>accommodations</highlight> worldwide",

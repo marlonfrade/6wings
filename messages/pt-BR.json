@@ -93,7 +93,13 @@
           "quote-error": "Erro ao criar cotação",
           "select-date": "Selecione uma data",
           "select-range": "Selecione um período",
-          "select-return": "Selecione a volta"
+          "select-return": "Selecione a volta",
+          "loading": "Carregando Aeroportos...",
+          "airport-placeholder-landing": "Cidade ou aeroporto de destino",
+          "airport-placeholder-takeoff": "Cidade ou aeroporto de origem",
+          "error-loading-airports": "Erro ao carregar aeroportos",
+          "no-airports-found": "Nenhum aeroporto encontrado",
+          "search-airport-min-length": "Digite para buscar"
         },
         "accommodation": {
           "title": "Encontre <highlight>hospedagens</highlight> em todo o Mundo",

@@ -19,6 +19,7 @@ import {
 } from '@/components/ui/popover'
 import { useQuery } from '@tanstack/react-query'
 import { AirportResponse } from '@/types/airport'
+import { useTranslations } from 'next-intl'
 
 // Custom CommandLoading component since it's not exported from command.tsx
 const CommandLoading = ({ children }: { children: React.ReactNode }) => {
@@ -41,7 +42,7 @@ export default function AirportSelect({
   const [open, setOpen] = React.useState(false)
   const [query, setQuery] = React.useState('')
   const [isInitialSearch, setIsInitialSearch] = React.useState(true)
-
+  const t = useTranslations('homepage.travel.search.flights')
   // Debounce search input with React's useMemo
   const debouncedSearch = React.useMemo(() => {
     const setSearchWithDelay = (value: string) => {
@@ -183,12 +184,16 @@ export default function AirportSelect({
           role="combobox"
           aria-expanded={open}
           className="h-[53px] w-full max-w-[223px] justify-between border border-secondary transition-all duration-300 hover:border-primary hover:bg-primary/10"
-          aria-label="Select airport"
+          aria-label={
+            type === 'departure'
+              ? t('airport-placeholder-takeoff')
+              : t('airport-placeholder-landing')
+          }
         >
           {isLoading && value ? (
             <div className="flex items-center gap-2">
               <Loader2 className="h-4 w-4 animate-spin" />
-              Loading...
+              {t('loading')}
             </div>
           ) : value ? (
             `${value.code || value.cidade.substring(0, 15)}`
@@ -205,7 +210,11 @@ export default function AirportSelect({
       <PopoverContent className="w-full min-w-[223px] p-0">
         <Command shouldFilter={false}>
           <CommandInput
-            placeholder="Search airport or city..."
+            placeholder={
+              type === 'departure'
+                ? t('airport-placeholder-takeoff')
+                : t('airport-placeholder-landing')
+            }
             value={query}
             onValueChange={(value) => {
               setQuery(value)
@@ -218,17 +227,15 @@ export default function AirportSelect({
               <CommandLoading>
                 <div className="flex items-center justify-center p-4">
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  <span className="ml-2">Loading airports...</span>
+                  <span className="ml-2">{t('loading')}</span>
                 </div>
               </CommandLoading>
             ) : error ? (
-              <CommandEmpty>
-                Error loading airports. Please try again.
-              </CommandEmpty>
+              <CommandEmpty>{t('error-loading-airports')}</CommandEmpty>
             ) : debouncedQuery.length > 0 && debouncedQuery.length < 2 ? (
-              <CommandEmpty>Type at least 2 characters to search</CommandEmpty>
+              <CommandEmpty>{t('search-airport-min-length')}</CommandEmpty>
             ) : airports.length === 0 ? (
-              <CommandEmpty>No airports found.</CommandEmpty>
+              <CommandEmpty>{t('no-airports-found')}</CommandEmpty>
             ) : groupedAirports.length === 0 ? (
               // Fallback if grouping fails - display flat list
               <CommandGroup>
