@@ -4,7 +4,8 @@ import * as React from 'react'
 import { format } from 'date-fns'
 import { Calendar as CalendarIcon } from 'lucide-react'
 import { DateRange } from 'react-day-picker'
-import { ptBR } from 'date-fns/locale'
+import { ptBR, enUS } from 'date-fns/locale'
+import { useTranslations, useLocale } from 'next-intl'
 
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -27,6 +28,10 @@ export function DateRangePicker({
   selected,
   onChange
 }: DateRangePickerProps) {
+  const t = useTranslations('homepage.travel.search.flights')
+  const locale = useLocale()
+
+  const local = locale === 'pt-BR' ? ptBR : enUS
   return (
     <div className={cn('grid gap-2', className)}>
       <Popover>
@@ -47,10 +52,10 @@ export function DateRangePicker({
                   {format(selected.to, 'dd/MM/yyyy', { locale: ptBR })}
                 </>
               ) : (
-                'Selecione a volta'
+                t('select-return')
               )
             ) : (
-              'Selecione as datas'
+              t('select-range')
             )}
           </Button>
         </PopoverTrigger>
@@ -62,7 +67,7 @@ export function DateRangePicker({
             selected={selected}
             onSelect={(range) => onChange(range)}
             numberOfMonths={2}
-            locale={ptBR}
+            locale={local}
           />
         </PopoverContent>
       </Popover>

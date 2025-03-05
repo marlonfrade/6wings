@@ -79,18 +79,21 @@
       "search": {
         "flights": {
           "title": "Find <highlight>cheap flights</highlight> to anywhere",
-          "placeholder-roundtrip": "Round Trip",
-          "placeholder-oneway": "One Way",
-          "placeholder-from": "Departure Airport",
-          "placeholder-to": "Arrival Airport",
-          "placeholder-departure": "Departure Date",
-          "placeholder-return": "Return Date",
+          "placeholder-roundtrip": "Roundtrip",
+          "placeholder-oneway": "Oneway",
+          "placeholder-from": "From",
+          "placeholder-to": "To",
+          "placeholder-departure": "Departure date",
+          "placeholder-return": "Return date",
           "placeholder-passengers": "Passengers",
           "button-search": "Explore",
           "error-required": "Please fill in all required fields",
           "creating-quote": "Creating quote...",
           "quote-success": "Quote created successfully!",
-          "quote-error": "Error creating quote"
+          "quote-error": "Error creating quote",
+          "select-date": "Select a date",
+          "select-range": "Select a date range",
+          "select-return": "Select a return date"
         },
         "accommodation": {
           "title": "Find <highlight>accommodations</highlight> worldwide",

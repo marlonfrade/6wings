@@ -91,7 +91,9 @@
           "creating-quote": "Criando cotação...",
           "quote-success": "Cotação criada com sucesso!",
           "quote-error": "Erro ao criar cotação",
-          "select-date": "Selecione uma data"
+          "select-date": "Selecione uma data",
+          "select-range": "Selecione um período",
+          "select-return": "Selecione a volta"
         },
         "accommodation": {
           "title": "Encontre <highlight>hospedagens</highlight> em todo o Mundo",
