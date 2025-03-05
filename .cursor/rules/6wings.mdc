@@ -1,0 +1,99 @@
+---
+description: Configuration for Ai for 6wings Ecommerce Project
+globs: *.tsx, *.ts
+alwaysApply: true
+---
+
+You are an expert in TypeScript, Next.js, Node.js, Next.js App Router, Blockchain integration, Shadcn UI, Radix UI, Tailwind CSS, and scalable eCommerce development. Your goal is to assist in building a high-quality, fast, and scalable eCommerce platform for 6Wings.
+  
+## **Code Structure and Conventions**
+- Use **TypeScript** for all code.
+- Pages must be defined using `export default function`.
+- Components must use `export const`.
+- Use **camelCase** for files and directories (e.g., `carouselExample.tsx`).
+- Organize files in a modular structure (e.g., `components/ui`, `hooks`, `services`).
+- Follow **Shadcn UI** and **Tailwind CSS** best practices for styling.
+- Write concise, technical TypeScript code with accurate examples.
+- Use functional and declarative programming patterns; avoid classes.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+- Structure files: exported component, subcomponents, helpers, static content, types.
+
+## **Next.js Best Practices**
+- Prioritize **SSR (Server-Side Rendering)** and **SSG (Static Site Generation)** for performance.
+- Use **React Server Components (RSC)** where possible.
+- Minimize the use of `"use client"`, reserving it for UI-heavy interactions.
+- Use **Next.js App Router** for routing and state changes.
+- Implement **middleware for security** (e.g., auth handling, request validation).
+
+## **Naming Conventions**
+- Use **camelCase** for files and directories (e.g., `carouselExample.tsx`).
+- Favor named exports for components.
+
+## **TypeScript Usage**
+- Use TypeScript for all code; prefer interfaces over types.
+- Avoid enums; use maps instead.
+- Use functional components with TypeScript interfaces.
+
+## **Syntax and Formatting**
+- Use the "function" keyword for pure functions.
+- Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements.
+- Use declarative JSX.
+
+## **UI/UX & Design Guidelines**
+- Follow **Shadcn UI** and **Figma** for a consistent and visually appealing design.
+- Use **Tailwind CSS Utility Classes** for styling.
+- Ensure **mobile-first** and **responsive design** best practices.
+- Implement **ARIA attributes** for accessibility.
+- Use **Headless UI** components for modals, dropdowns, and popovers.
+- Use Shadcn UI, Radix, and Tailwind for components and styling.
+- Implement responsive design with Tailwind CSS; use a mobile-first approach.
+
+## **Performance Optimization**
+- Use **TanStack Query** for API state management and caching.
+- Optimize API calls by reducing unnecessary fetch requests.
+- Implement **lazy loading** for images and non-critical components.
+- Use **pre-fetching** and **code splitting** for better page speed.
+- Optimize Web Vitals (**LCP, FID, CLS**) using Next.js performance tools.
+- Minimize 'use client', 'useEffect', and 'setState'; favor React Server Components (RSC).
+- Wrap client components in Suspense with fallback.
+- Use dynamic loading for non-critical components.
+- Optimize images: use WebP format, include size data, implement lazy loading.
+
+## **Security & Blockchain Integration**
+- Ensure API integration with blockchain is secure and properly validated.
+- Sanitize and validate all blockchain-related data before processing.
+- Implement **secure authentication** (NextAuth.js) and protect sensitive endpoints.
+- Follow **OWASP security guidelines** for frontend and API communication.
+
+## **Error Handling & Testing**
+- Use **Zod** for schema validation in forms and API responses.
+- Implement **React Hook Form** for controlled input handling.
+- Handle errors gracefully using **error boundaries** and Next.js built-in error handling.
+- Implement **unit tests** and **integration tests** for key components.
+
+## **Dependency Management**
+- Keep dependencies up to date and remove unused packages.
+- Use **ESLint + Prettier** for code formatting and linting.
+- Follow a **monorepo-friendly structure** for future scalability.
+- Ensure **tree-shaking** is applied to minimize bundle size.
+
+## **Documentation & Guidelines**
+- Maintain clear documentation for API integrations.
+- Use **JSDoc** for documenting functions and components.
+- Follow **Markdown (.md) guidelines** for project documentation.
+
+## **Key Conventions**
+1. **Favor declarative programming** over imperative patterns.
+2. **Minimize inline styles**, prefer Tailwind utility classes.
+3. **Optimize re-renders** by memoizing expensive calculations.
+4. **Use environment variables** for secrets and API keys.
+5. **Follow DRY (Don't Repeat Yourself) and SOLID principles** in code structure.
+6. Use 'nuqs' for URL search parameter state management.
+7. Optimize Web Vitals (LCP, CLS, FID).
+8. Limit 'use client':
+9. Favor server components and Next.js SSR.
+10. Use only for Web API access in small components.
+11. Avoid for data fetching or state management. 
+
+Follow Next.js docs for Data Fetching, Rendering, and Routing. Refer to the **Next.js, Tailwind, and TanStack Query official documentation** for best practices and optimizations.
