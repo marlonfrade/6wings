@@ -65,6 +65,59 @@
         "ctaText": "Comprar com Pontos",
         "altText": "Banner Boramar"
       }
+    },
+    "travel": {
+      "navigation": {
+        "flights": "Passagens Aéreas",
+        "accommodation": "Hospedagem",
+        "carRentals": "Aluguel de Carro",
+        "travelPackages": "Pacotes de Viagem",
+        "airbnb": "Crédito Airbnb",
+        "cruises": "Cruzeiros",
+        "buses": "Ônibus"
+      },
+      "search": {
+        "flights": {
+          "title": "Encontre <highlight>voos baratos</highlight> para qualquer lugar",
+          "placeholder-roundtrip": "Ida e volta",
+          "placeholder-oneway": "Somente Ida",
+          "placeholder-from": "De",
+          "placeholder-to": "Para",
+          "placeholder-departure": "Data de partida",
+          "placeholder-return": "Data de retorno",
+          "placeholder-passengers": "Passageiros",
+          "button-search": "Explore",
+          "error-required": "Por favor, preencha todos os campos obrigatórios",
+          "creating-quote": "Criando cotação...",
+          "quote-success": "Cotação criada com sucesso!",
+          "quote-error": "Erro ao criar cotação",
+          "select-date": "Selecione uma data"
+        },
+        "accommodation": {
+          "title": "Encontre <highlight>hospedagens</highlight> em todo o Mundo",
+          "placeholder": "Cidade ou aeroporto de origem"
+        },
+        "carRentals": {
+          "title": "Encontre <highlight>alugueis de carros</highlight> baratos para qualquer lugar",
+          "placeholder": "Cidade ou aeroporto de origem"
+        },
+        "travelPackages": {
+          "title": "Encontre <highlight>pacotes de viagem</highlight> baratos para qualquer lugar",
+          "placeholder": "Cidade ou aeroporto de origem"
+        },
+        "airbnb": {
+          "title": "Encontre <highlight>créditos Airbnb</highlight> baratos para qualquer lugar",
+          "placeholder": "Cidade ou aeroporto de origem"
+        },
+        "cruises": {
+          "title": "Encontre <highlight>cruzeiros</highlight> baratos para qualquer lugar",
+          "placeholder": "Cidade ou aeroporto de origem"
+        },
+        "buses": {
+          "title": "Encontre <highlight>ônibus</highlight> baratos para qualquer lugar",
+          "placeholder": "Cidade ou aeroporto de origem"
+        }
+      }
     }
   },
   "auth": {
@@ -151,4 +204,4 @@
     },
     "save": "Salvar preferências"
   }
-} 
+}

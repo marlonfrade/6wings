@@ -29,7 +29,7 @@ export default function Home() {
                     <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary" />
                   }
                 >
-                  <TravelNavigation initialCategory="Passagens Aéreas" />
+                  <TravelNavigation initialCategory="flights" />
                 </Suspense>
                 <div className="grid h-dvh grid-cols-[200px_1fr] gap-x-2 px-4 py-4">
                   <AssistantModal />

@@ -1,188 +1,294 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import { Airport } from '@/types/airport'
+import * as React from 'react'
+import { Check, Loader2, PlaneTakeoff, PlaneLanding } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList
+} from '@/components/ui/command'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from '@/components/ui/popover'
+import { useQuery } from '@tanstack/react-query'
+import { AirportResponse } from '@/types/airport'
 
-interface AirportResponse {
-  id: number
-  name: string
-  code: string
-  cidade: string
-  estado?: string
-  pais: string
+// Custom CommandLoading component since it's not exported from command.tsx
+const CommandLoading = ({ children }: { children: React.ReactNode }) => {
+  return <div className="py-6 text-center text-sm">{children}</div>
 }
 
 interface AirportSelectProps {
-  label?: string
-  value: Airport | null
-  onChange: (airport: Airport | null) => void
+  value: AirportResponse | null
+  onChange: (airport: AirportResponse | null) => void
   placeholder?: string
+  type?: 'departure' | 'arrival'
 }
 
 export default function AirportSelect({
-  label,
   value,
   onChange,
-  placeholder
+  placeholder = 'Select airport...',
+  type = 'departure'
 }: AirportSelectProps) {
-  const [query, setQuery] = useState('')
-  const [airports, setAirports] = useState<AirportResponse[]>([])
-  const [isOpen, setIsOpen] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const [open, setOpen] = React.useState(false)
+  const [query, setQuery] = React.useState('')
+  const [isInitialSearch, setIsInitialSearch] = React.useState(true)
 
-  useEffect(() => {
-    if (value) {
-      setQuery(`${value.cidade} (${value.code})`)
+  // Debounce search input with React's useMemo
+  const debouncedSearch = React.useMemo(() => {
+    const setSearchWithDelay = (value: string) => {
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current)
+      }
+      searchTimeoutRef.current = setTimeout(() => {
+        setDebouncedQuery(value)
+      }, 300)
     }
-  }, [value])
+    return setSearchWithDelay
+  }, [])
 
-  useEffect(() => {
-    const fetchAirports = async () => {
-      setLoading(true)
+  const [debouncedQuery, setDebouncedQuery] = React.useState('')
+  const searchTimeoutRef = React.useRef<NodeJS.Timeout | null>(null)
+
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  const {
+    data: airports = [],
+    isLoading,
+    error
+  } = useQuery({
+    queryKey: ['airports', debouncedQuery, isInitialSearch],
+    queryFn: async () => {
+      // Allow empty query to fetch all airports or queries with at least 2 characters
+      if (debouncedQuery.length > 0 && debouncedQuery.length < 2) return []
+
       try {
+        // Use both query and q parameters to ensure compatibility
+        const queryParam = debouncedQuery
+          ? `query=${encodeURIComponent(debouncedQuery)}&q=${encodeURIComponent(debouncedQuery)}`
+          : ''
+
+        // Add limit parameter for initial search
+        const limitParam = isInitialSearch ? 'limit=10' : ''
+
+        // Combine parameters
+        const params = [queryParam, limitParam].filter(Boolean).join('&')
+
         const response = await fetch(
-          `/api/airports${query ? `?query=${query}` : ''}`
+          `/api/airports${params ? `?${params}` : ''}`
         )
+
         if (!response.ok) {
-          const errorData = await response.json()
-          throw new Error(errorData.error || 'Failed to fetch airports')
+          throw new Error(`Failed to fetch airports: ${response.status}`)
         }
+
         const data = await response.json()
-        setAirports(data)
+
+        // Log the received data for debugging
+        console.log('Received airport data:', data)
+
+        // Handle both array format and the format you provided in your example
+        if (Array.isArray(data)) {
+          return data
+        } else if (data && typeof data === 'object') {
+          return Object.values(data)
+        }
+
+        return []
       } catch (error) {
         console.error('Error fetching airports:', error)
-        setAirports([])
-      } finally {
-        setLoading(false)
+        throw error
       }
+    },
+    enabled: open,
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false
+  })
+
+  // Log airports data for debugging
+  React.useEffect(() => {
+    console.log('Current airports data:', airports)
+  }, [airports])
+
+  // Group airports by city
+  const groupedAirports = React.useMemo(() => {
+    if (!airports || !Array.isArray(airports) || airports.length === 0) {
+      console.log('No airports to group or invalid format')
+      return []
     }
 
-    if (query.trim() && !value) {
-      const debounceTimer = setTimeout(fetchAirports, 500)
-      return () => clearTimeout(debounceTimer)
+    const groups: Record<string, AirportResponse[]> = {}
+
+    airports.forEach((airport) => {
+      if (!airport || typeof airport !== 'object' || !airport.cidade) {
+        console.warn('Invalid airport object:', airport)
+        return
+      }
+
+      const city = airport.cidade
+      if (!groups[city]) {
+        groups[city] = []
+      }
+      groups[city].push(airport)
+    })
+
+    return Object.entries(groups).map(([city, airports]) => ({
+      city,
+      airports
+    }))
+  }, [airports])
+
+  // Trigger a fetch when the popover opens
+  React.useEffect(() => {
+    if (open) {
+      // Force a refetch when the popover opens
+      setDebouncedQuery(debouncedQuery)
+    }
+  }, [open, debouncedQuery])
+
+  // Reset initial search flag when query changes
+  React.useEffect(() => {
+    if (debouncedQuery) {
+      setIsInitialSearch(false)
     } else {
-      setAirports([])
+      setIsInitialSearch(true)
     }
-  }, [query, value])
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value
-    setQuery(newValue)
-    setIsOpen(true)
-
-    if (value && newValue !== `${value.cidade} (${value.code})`) {
-      onChange(null)
-    }
-  }
-
-  const handleSelectAirport = (airport: AirportResponse) => {
-    const formattedAirport: Airport = {
-      id: airport.id,
-      nome: airport.name,
-      code: airport.code,
-      cidade: airport.cidade,
-      estado: airport.estado || '',
-      pais: airport.pais
-    }
-
-    onChange(formattedAirport)
-    const formattedQuery = `${airport.cidade} (${airport.code})`
-    setQuery(formattedQuery)
-    setIsOpen(false)
-  }
-
-  const handleInputFocus = () => {
-    if (!value) {
-      setIsOpen(true)
-      setQuery('')
-    }
-  }
-
-  const handleInputBlur = () => {
-    setTimeout(() => {
-      setIsOpen(false)
-      if (value) {
-        setQuery(`${value.cidade} (${value.code})`)
-      } else {
-        setQuery('')
-      }
-    }, 200)
-  }
-
-  const handleEditClick = () => {
-    onChange(null)
-    setQuery('')
-    setIsOpen(true)
-    inputRef.current?.focus()
-  }
+  }, [debouncedQuery])
 
   return (
-    <div className="relative h-full w-full">
-      {label && (
-        <span className="absolute -top-2 left-3 z-10 bg-white px-2 text-xs font-medium text-gray-700">
-          {label}
-        </span>
-      )}
-      <div className="relative flex w-full items-end justify-end">
-        <input
-          ref={inputRef}
-          type="text"
-          className="h-[53px] w-full rounded-lg border border-[#363C41] bg-transparent px-4 py-3 text-sm text-[#363C41] transition-all duration-200 placeholder:text-gray-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary disabled:bg-gray-50 disabled:text-gray-500"
-          value={value ? `${value.cidade} (${value.code})` : query}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
-          placeholder={placeholder}
-          autoComplete="off"
-          disabled={!!value}
-        />
-        {value && (
-          <button
-            type="button"
-            onClick={handleEditClick}
-            className="absolute right-3 text-sm text-primary transition-colors hover:text-primary/80 hover:underline"
-          >
-            Editar
-          </button>
-        )}
-      </div>
-
-      {isOpen && (
-        <div className="absolute z-50 mt-1 max-h-[240px] w-full overflow-auto rounded-lg border border-gray-200 bg-white shadow-lg">
-          {loading ? (
-            <div className="p-4 text-center text-gray-500">Carregando...</div>
-          ) : airports.length > 0 ? (
-            airports.map((airport) => (
-              <div
-                key={airport.id}
-                className={`cursor-pointer p-3 transition-colors duration-150 hover:bg-gray-50 ${
-                  value?.code === airport.code ? 'bg-gray-50' : ''
-                }`}
-                onClick={() => handleSelectAirport(airport)}
-              >
-                <div className="font-medium text-[#363C41]">
-                  {airport.cidade} ({airport.code})
-                </div>
-                <div className="text-sm text-gray-500">
-                  {airport.name}
-                  <br />
-                  {airport.estado ? `${airport.estado} - ` : ''}
-                  {airport.pais}
-                </div>
-              </div>
-            ))
-          ) : query.trim() ? (
-            <div className="p-4 text-center text-gray-500">
-              Nenhum aeroporto encontrado
+    <Popover
+      open={open}
+      onOpenChange={(newOpen) => {
+        setOpen(newOpen)
+      }}
+    >
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={open}
+          className="h-[53px] w-full max-w-[223px] justify-between border border-secondary transition-all duration-300 hover:border-primary hover:bg-primary/10"
+          aria-label="Select airport"
+        >
+          {isLoading && value ? (
+            <div className="flex items-center gap-2">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Loading...
             </div>
+          ) : value ? (
+            `${value.code || value.cidade.substring(0, 15)}`
           ) : (
-            <div className="p-4 text-center text-gray-500">
-              Digite para buscar aeroportos
-            </div>
+            placeholder
           )}
-        </div>
-      )}
-    </div>
+          {type === 'departure' ? (
+            <PlaneTakeoff className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          ) : (
+            <PlaneLanding className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          )}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-full min-w-[223px] p-0">
+        <Command shouldFilter={false}>
+          <CommandInput
+            placeholder="Search airport or city..."
+            value={query}
+            onValueChange={(value) => {
+              setQuery(value)
+              debouncedSearch(value)
+            }}
+            className="h-9"
+          />
+          <CommandList>
+            {isLoading ? (
+              <CommandLoading>
+                <div className="flex items-center justify-center p-4">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <span className="ml-2">Loading airports...</span>
+                </div>
+              </CommandLoading>
+            ) : error ? (
+              <CommandEmpty>
+                Error loading airports. Please try again.
+              </CommandEmpty>
+            ) : debouncedQuery.length > 0 && debouncedQuery.length < 2 ? (
+              <CommandEmpty>Type at least 2 characters to search</CommandEmpty>
+            ) : airports.length === 0 ? (
+              <CommandEmpty>No airports found.</CommandEmpty>
+            ) : groupedAirports.length === 0 ? (
+              // Fallback if grouping fails - display flat list
+              <CommandGroup>
+                {airports.map((airport: AirportResponse) => (
+                  <CommandItem
+                    key={airport.id}
+                    value={airport.code}
+                    onSelect={() => {
+                      onChange(airport)
+                      setOpen(false)
+                      setQuery('')
+                    }}
+                  >
+                    {airport.cidade} - {airport.name} ({airport.code})
+                    <Check
+                      className={cn(
+                        'ml-auto',
+                        value?.code === airport.code
+                          ? 'opacity-100'
+                          : 'opacity-0'
+                      )}
+                    />
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            ) : (
+              groupedAirports.map((cityGroup) => (
+                <CommandGroup key={cityGroup.city} heading={cityGroup.city}>
+                  {cityGroup.airports.map(
+                    (airport) => (
+                      console.log(airport),
+                      (
+                        <CommandItem
+                          key={airport.id}
+                          value={airport.code}
+                          onSelect={() => {
+                            onChange(airport)
+                            setOpen(false)
+                            setQuery('')
+                          }}
+                        >
+                          {airport.name} ({airport.code})
+                          <Check
+                            className={cn(
+                              'ml-auto',
+                              value?.code === airport.code
+                                ? 'opacity-100'
+                                : 'opacity-0'
+                            )}
+                          />
+                        </CommandItem>
+                      )
+                    )
+                  )}
+                </CommandGroup>
+              ))
+            )}
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
   )
 }

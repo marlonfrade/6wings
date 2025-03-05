@@ -35,6 +35,90 @@
       }
     }
   },
+  "homepage": {
+    "carousel": {
+      "cristo": {
+        "title": "Exchange your 6Wings points for",
+        "highlight": "Experiences",
+        "description": "Use your points to ride the Corcovado Train and visit Christ the Redeemer, Rio de Janeiro's most iconic monument",
+        "ctaText": "Buy with Points",
+        "altText": "Christ the Redeemer Banner"
+      },
+      "aquario": {
+        "title": "Exchange your 6Wings points for",
+        "highlight": "Tickets",
+        "description": "Exchange your points for tickets at Aqua Rio, Rio de Janeiro's largest aquatic park",
+        "ctaText": "Buy with Points",
+        "altText": "Aqua Rio Banner"
+      },
+      "yabnabi": {
+        "title": "Exchange your 6Wings points for",
+        "highlight": "Tourism",
+        "description": "Use your points to experience Yabnabi Tourism and immerse yourself in the culture of the Paiter Suruí people in the Amazon",
+        "ctaText": "Buy with Points",
+        "altText": "Yabnabi Tourism Banner"
+      },
+      "canoagem": {
+        "title": "Exchange your 6Wings points for",
+        "highlight": "Adventures",
+        "description": "Use your points to explore the crystal-clear waters of Paraty in an exciting canoeing experience, navigating through mangroves and paradise beaches",
+        "ctaText": "Buy with Points",
+        "altText": "Boramar Banner"
+      }
+    },
+    "travel": {
+      "navigation": {
+        "flights": "Flights",
+        "accommodation": "Accommodation",
+        "carRentals": "Car Rentals",
+        "travelPackages": "Travel Packages",
+        "airbnb": "Airbnb Credit",
+        "cruises": "Cruises",
+        "buses": "Buses"
+      },
+      "search": {
+        "flights": {
+          "title": "Find <highlight>cheap flights</highlight> to anywhere",
+          "placeholder-roundtrip": "Round Trip",
+          "placeholder-oneway": "One Way",
+          "placeholder-from": "Departure Airport",
+          "placeholder-to": "Arrival Airport",
+          "placeholder-departure": "Departure Date",
+          "placeholder-return": "Return Date",
+          "placeholder-passengers": "Passengers",
+          "button-search": "Explore",
+          "error-required": "Please fill in all required fields",
+          "creating-quote": "Creating quote...",
+          "quote-success": "Quote created successfully!",
+          "quote-error": "Error creating quote"
+        },
+        "accommodation": {
+          "title": "Find <highlight>accommodations</highlight> worldwide",
+          "placeholder": "City or airport of origin"
+        },
+        "carRentals": {
+          "title": "Find <highlight>cheap car rentals</highlight> anywhere",
+          "placeholder": "City or airport of origin"
+        },
+        "travelPackages": {
+          "title": "Find <highlight>cheap travel packages</highlight> anywhere",
+          "placeholder": "City or airport of origin"
+        },
+        "airbnb": {
+          "title": "Find <highlight>cheap Airbnb credits</highlight> anywhere",
+          "placeholder": "City or airport of origin"
+        },
+        "cruises": {
+          "title": "Find <highlight>cheap cruises</highlight> anywhere",
+          "placeholder": "City or airport of origin"
+        },
+        "buses": {
+          "title": "Find <highlight>cheap bus tickets</highlight> anywhere",
+          "placeholder": "City or airport of origin"
+        }
+      }
+    }
+  },
   "auth": {
     "login": "Login",
     "signup": "Create Account",
@@ -118,37 +202,5 @@
       }
     },
     "save": "Save preferences"
-  },
-  "homepage": {
-    "carousel": {
-      "cristo": {
-        "title": "Exchange your 6Wings points for",
-        "highlight": "Experiences",
-        "description": "Use your points to ride the Corcovado Train and visit Christ the Redeemer, Rio de Janeiro's most iconic monument",
-        "ctaText": "Buy with Points",
-        "altText": "Christ the Redeemer Banner"
-      },
-      "aquario": {
-        "title": "Exchange your 6Wings points for",
-        "highlight": "Tickets",
-        "description": "Exchange your points for tickets at Aqua Rio, Rio de Janeiro's largest aquatic park",
-        "ctaText": "Buy with Points",
-        "altText": "Aqua Rio Banner"
-      },
-      "yabnabi": {
-        "title": "Exchange your 6Wings points for",
-        "highlight": "Tourism",
-        "description": "Use your points to experience Yabnabi Tourism and immerse yourself in the culture of the Paiter Suruí people in the Amazon",
-        "ctaText": "Buy with Points",
-        "altText": "Yabnabi Tourism Banner"
-      },
-      "canoagem": {
-        "title": "Exchange your 6Wings points for",
-        "highlight": "Adventures",
-        "description": "Use your points to explore the crystal-clear waters of Paraty in an exciting canoeing experience, navigating through mangroves and paradise beaches",
-        "ctaText": "Buy with Points",
-        "altText": "Boramar Banner"
-      }
-    }
   }
-} 
+}

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
-import { useDebounce } from '@/hooks/useDebounce'
+import { useDebouncedValue } from '@/hooks/useDebouncedValue'
 import { Search, MapPin } from 'lucide-react'
 
 export interface Location {
@@ -32,7 +32,7 @@ export const LocationInput = ({
   const [suggestions, setSuggestions] = useState<Location[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
-  const debouncedValue = useDebounce(inputValue, 300)
+  const [debouncedValue] = useDebouncedValue(inputValue, 300)
   const inputRef = useRef<HTMLInputElement>(null)
   const suggestionsRef = useRef<HTMLUListElement>(null)
   const [selectedIndex, setSelectedIndex] = useState<number>(-1)
