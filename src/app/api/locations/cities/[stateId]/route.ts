@@ -4,10 +4,10 @@ import { NextRequest } from 'next/server'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { stateId: string } }
+  { params }: { params: Promise<{ stateId: string }> }
 ) {
   try {
-    const stateId = params.stateId
+    const { stateId } = await params
     const apiUrl = process.env.API_URL
     const { data } = await axios.get(`${apiUrl}/fetchCities`, {
       params: {
