@@ -102,28 +102,198 @@
           "search-airport-min-length": "Digite para buscar"
         },
         "accommodation": {
-          "title": "Encontre <highlight>hospedagens</highlight> em todo o Mundo",
-          "placeholder": "Cidade ou aeroporto de origem"
+          "title": "Encontre <highlight>hospedagens</highlight> no Brasil",
+          "placeholder": "Cidade ou estado de origem",
+          "search-error-required": "Por favor, preencha todos os campos obrigatórios",
+          "search-loading": "Criando cotação...",
+          "search-success": "Cotação criada com sucesso!",
+          "search-error": "Erro ao criar cotação",
+          "search-button": "Buscar Hospedagens",
+          "select-guests": "Selecione o número de hóspedes",
+          "select-state": "Selecione um estado",
+          "search-state": "Buscar estado",
+          "loading-states": "Carregando estados...",
+          "error-loading-states": "Erro ao carregar estados",
+          "no-states-found": "Nenhum estado encontrado",
+          "select-city": "Selecione uma cidade",
+          "search-city": "Buscar cidade",
+          "loading-cities": "Carregando cidades...",
+          "error-loading-cities": "Erro ao carregar cidades",
+          "no-cities-found": "Nenhuma cidade encontrada",
+
+          "accommodation-type": {
+            "resort": "Resort",
+            "hotel": "Hotel",
+            "pousada": "Pousada",
+            "hostel": "Hostel",
+            "camping": "Camping",
+            "lago": "Lago",
+            "iconicos": "Iconic",
+            "chales": "Chalés",
+            "vistas-incriveis": "Vistas incríveis",
+            "frente-praia": "Frente à praia",
+            "tropical": "Tropical",
+            "piscinas": "Piscinas incríveis",
+            "interior": "No interior",
+            "fazendas": "Fazendas",
+            "beira-lago": "Na beira do lago",
+            "triangulares": "Casas triangulares",
+            "arvore": "Casas na árvore",
+            "ilhas": "Ilhas",
+            "parques": "Parques nacionais",
+            "arredondadas": "Casas arredondadas",
+            "terra": "Casas de terra",
+            "castelos": "Castelos",
+            "surf": "Surf"
+          }
         },
         "carRentals": {
           "title": "Encontre <highlight>alugueis de carros</highlight> baratos para qualquer lugar",
-          "placeholder": "Cidade ou aeroporto de origem"
+          "placeholder": "Cidade ou Estado de origem",
+          "select-drivers": "Selecione o número de motoristas",
+          "search-error-required": "Por favor, preencha todos os campos obrigatórios",
+          "search-loading": "Criando cotação...",
+          "search-success": "Cotação criada com sucesso!",
+          "search-error": "Erro ao criar cotação",
+          "search-button": "Buscar Alugueis de Carros",
+          "types": {
+            "economico": "Econômico",
+            "sedan": "Sedan",
+            "suv": "SUV",
+            "hatchback": "Hatchback",
+            "luxo": "Luxo",
+            "eletrico": "Elétrico",
+            "compacto": "Compacto",
+            "conversivel": "Conversível",
+            "pickup": "Pickup",
+            "minivan": "Minivan",
+            "esportivo": "Esportivo",
+            "moto": "Moto",
+            "onibus": "Ônibus",
+            "caravan": "Caravan"
+          }
         },
         "travelPackages": {
-          "title": "Encontre <highlight>pacotes de viagem</highlight> baratos para qualquer lugar",
-          "placeholder": "Cidade ou aeroporto de origem"
+          "title": "Encontre <highlight>pacotes de viagem</highlight> para qualquer lugar",
+          "placeholder-origin": "De",
+          "placeholder-destination": "Para",
+          "search-error-required": "Por favor, preencha todos os campos obrigatórios",
+          "search-loading": "Criando cotação...",
+          "search-success": "Cotação criada com sucesso!",
+          "search-error": "Erro ao criar cotação",
+          "search-button": "Construir Pacote",
+          "package-types": {
+            "flight-only": {
+              "name": "Apenas Passagem",
+              "description": "Pacote básico com passagem aérea",
+              "features": [
+                "Passagem aérea ida e volta",
+                "Bagagem de mão",
+                "Taxas de embarque",
+                "Seguro viagem básico"
+              ]
+            },
+            "flight-hotel": {
+              "name": "Passagem + Hotel",
+              "description": "Pacote com passagem e hospedagem",
+              "features": [
+                "Passagem aérea ida e volta",
+                "Bagagem de mão",
+                "Taxas de embarque",
+                "Café da manhã incluso",
+                "Transfer aeroporto-hotel"
+              ]
+            },
+            "all-inclusive": {
+              "name": "All Inclusive",
+              "description": "Pacote completo com passagem, hospedagem e aluguel de carro",
+              "features": [
+                "Passagem aérea ida e volta",
+                "Bagagem de mão",
+                "Taxas de embarque",
+                "Café da manhã incluso",
+                "Transfer aeroporto-hotel",
+                "Refeições all inclusive",
+                "Bebidas all inclusive",
+                "Atividades all inclusive"
+              ]
+            },
+            "luxury": {
+              "name": "Luxo",
+              "description": "Pacote de luxo com passagem, hospedagem e aluguel de carro",
+              "features": [
+                "Passagem aérea ida e volta",
+                "Bagagem de mão",
+                "Taxas de embarque",
+                "Café da manhã incluso",
+                "Transfer aeroporto-hotel",
+                "Refeições all inclusive",
+                "Bebidas all inclusive",
+                "Atividades all inclusive",
+                "Transfer privado aeroporto-hotel",
+                "Aluguel de carro privado",
+                "Guia privado"
+              ]
+            },
+            "adventure": {
+              "name": "Aventura",
+              "description": "Pacote de aventura com passagem, hospedagem e aluguel de carro",
+              "features": [
+                "Passagem aérea ida e volta",
+                "Bagagem de mão",
+                "Taxas de embarque",
+                "Café da manhã incluso",
+                "Transfer aeroporto-hotel",
+                "Atividades de aventura",
+                "Guia privado"
+              ]
+            },
+            "romantic": {
+              "name": "Romântico",
+              "description": "Pacote romântico com passagem, hospedagem e aluguel de carro",
+              "features": [
+                "Passagem aérea ida e volta",
+                "Bagagem de mão",
+                "Taxas de embarque",
+                "Café da manhã incluso",
+                "Transfer aeroporto-hotel",
+                "Atividades românticas",
+                "Guia privado"
+              ]
+            }
+          }
         },
         "airbnb": {
           "title": "Encontre <highlight>créditos Airbnb</highlight> baratos para qualquer lugar",
-          "placeholder": "Cidade ou aeroporto de origem"
+          "placeholder": "Cidade ou aeroporto de origem",
+          "search-button": "Buscar Hospedagens",
+          "select-guests": "Selecione o número de hóspedes",
+          "search-error-required": "Por favor, preencha todos os campos obrigatórios",
+          "search-loading": "Criando cotação...",
+          "search-success": "Cotação criada com sucesso!",
+          "search-error": "Erro ao criar cotação"
         },
         "cruises": {
           "title": "Encontre <highlight>cruzeiros</highlight> baratos para qualquer lugar",
-          "placeholder": "Cidade ou aeroporto de origem"
+          "placeholder": "Cidade ou aeroporto de origem",
+          "search-button": "Buscar Cruzeiros",
+          "select-passengers": "Selecione o número de passageiros",
+          "search-error-required": "Por favor, preencha todos os campos obrigatórios",
+          "search-loading": "Criando cotação...",
+          "search-success": "Cotação criada com sucesso!",
+          "search-error": "Erro ao criar cotação"
         },
         "buses": {
           "title": "Encontre <highlight>ônibus</highlight> baratos para qualquer lugar",
-          "placeholder": "Cidade ou aeroporto de origem"
+          "from-placeholder": "Cidade de origem",
+          "to-placeholder": "Cidade de destino",
+          "date-title": "Data da Viagem",
+          "search-button": "Buscar Ônibus",
+          "select-passengers": "Selecione o número de passageiros",
+          "search-error-required": "Por favor, preencha todos os campos obrigatórios",
+          "search-loading": "Criando cotação...",
+          "search-success": "Cotação criada com sucesso!",
+          "search-error": "Erro ao criar cotação"
         }
       }
     }

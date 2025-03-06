@@ -1,8 +1,19 @@
+'use client'
+
 import { useState } from 'react'
-import { LocationInput, Location } from '@/components/travel/locationInput'
-import { DateRangePicker } from '../dateRangePicker'
+import { Search } from 'lucide-react'
 import { DateRange } from 'react-day-picker'
+import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+import LocationSelect from '@/components/travel/locationSelect'
+import { DateRangePicker } from '@/components/travel/dateRangePicker'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip'
 
 interface PassengerCount {
   adults: number
@@ -10,11 +21,27 @@ interface PassengerCount {
   infants: number
 }
 
-export default function SearchCruises() {
-  const router = useRouter()
+interface Location {
+  estado: {
+    id: number
+    estado: string
+    uf: string
+  } | null
+  cidade: {
+    id: number
+    cidade: string
+    estado: string
+    estado_id: string
+  } | null
+}
 
-  const [departurePort, setDeparturePort] = useState<Location | null>(null)
-  const [destinations, setDestinations] = useState<Location[]>([])
+export default function SearchCruises() {
+  const t = useTranslations('homepage.travel.search.cruises')
+  const router = useRouter()
+  const [location, setLocation] = useState<Location>({
+    estado: null,
+    cidade: null
+  })
   const [dateRange, setDateRange] = useState<DateRange>()
   const [passengers, setPassengers] = useState<PassengerCount>({
     adults: 1,
@@ -25,107 +52,122 @@ export default function SearchCruises() {
   const handlePassengerChange = (type: keyof PassengerCount, value: number) => {
     setPassengers((prev) => ({
       ...prev,
-      [type]: Math.max(0, value) // Ensure value doesn't go below 0
+      [type]: Math.max(0, value)
     }))
   }
 
   const handleSearch = async () => {
+    if (!location.estado || !location.cidade || !dateRange?.from) {
+      toast.error(t('search-error-required'))
+      return
+    }
+
+    const toastId = toast.loading(t('search-loading'))
+
     try {
-      if (!departurePort || !dateRange) {
-        throw new Error('Please fill in all required fields')
+      const searchParams = new URLSearchParams({
+        location: location.cidade.id.toString(),
+        startDate: dateRange.from.toISOString(),
+        ...(dateRange.to && { endDate: dateRange.to.toISOString() }),
+        passengers: JSON.stringify(passengers)
+      })
+
+      const response = await fetch('/api/cruises/quotes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          location,
+          dateRange,
+          passengers
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error(t('search-error'))
       }
 
-      const params = new URLSearchParams()
-
-      params.set('departurePort', departurePort.name)
-      params.set('destinations', destinations.map((d) => d.name).join(','))
-      if (dateRange.from) params.set('startDate', dateRange.from.toISOString())
-      if (dateRange.to) params.set('endDate', dateRange.to.toISOString())
-      params.set('passengers', JSON.stringify(passengers))
-
-      router.push(`/cruises/search-results?${params.toString()}`)
+      toast.success(t('search-success'), { id: toastId })
+      router.push(`/travel/cruises/search?${searchParams.toString()}`)
     } catch (error) {
-      console.error('Search error:', error)
-      // Handle error state here
+      console.error(t('search-error'), error)
+      toast.error(t('search-error'), { id: toastId })
     }
   }
 
   return (
-    <div className="rounded-lg bg-white p-6 shadow-md">
-      <h2 className="mb-6 text-2xl font-bold">Find Your Perfect Cruise</h2>
+    <div className="flex w-full flex-col items-center justify-center p-0">
+      <h2 className="mb-6 text-center font-prompt text-3xl font-black text-[#363C41] lg:mb-4">
+        {t.rich('title', {
+          highlight: (chunks) => <span className="text-primary">{chunks}</span>
+        })}
+      </h2>
 
-      <div className="space-y-4">
-        <div>
-          <label className="mb-2 block text-sm font-medium">
-            Departure Port
-          </label>
-          <LocationInput
-            label="Departure Port"
-            value={departurePort}
-            onChange={(location: Location | null) => setDeparturePort(location)}
-            placeholder="Select departure port"
-          />
+      <div className="relative flex w-full max-w-5xl flex-col items-center rounded-2xl border border-[#E2E2E2] px-20 py-[80px]">
+        <div className="absolute left-[10%] top-4 flex items-center gap-4">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="flex items-center gap-4">
+                  {Object.entries(passengers).map(([type, count]) => (
+                    <div key={type} className="flex items-center gap-2">
+                      <span className="text-sm font-medium capitalize text-muted-foreground">
+                        {type}
+                      </span>
+                      <button
+                        onClick={() =>
+                          handlePassengerChange(
+                            type as keyof PassengerCount,
+                            count - 1
+                          )
+                        }
+                        className="rounded border px-2 py-1 text-sm hover:bg-accent"
+                      >
+                        -
+                      </button>
+                      <span className="text-sm font-medium">{count}</span>
+                      <button
+                        onClick={() =>
+                          handlePassengerChange(
+                            type as keyof PassengerCount,
+                            count + 1
+                          )
+                        }
+                        className="rounded border px-2 py-1 text-sm hover:bg-accent"
+                      >
+                        +
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="font-montserrat text-sm text-white">
+                  {t('select-passengers')}
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
 
-        <div>
-          <label className="mb-2 block text-sm font-medium">Destinations</label>
-          <LocationInput
-            label="Destinations"
-            value={destinations[0] || null}
-            onChange={(location: Location | null) => {
-              if (location) setDestinations([...destinations, location])
-            }}
-            placeholder="Add destinations (optional)"
-          />
-        </div>
-
-        <div>
-          <label className="mb-2 block text-sm font-medium">Travel Dates</label>
+        <div className="mb-6 flex w-full flex-col items-center justify-center space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+          <LocationSelect value={location} onChange={setLocation} />
           <DateRangePicker
             selected={dateRange}
-            onChange={(range: DateRange | undefined) => setDateRange(range)}
+            onChange={setDateRange}
+            className="w-full md:max-w-[300px]"
           />
-        </div>
-
-        <div>
-          <label className="mb-2 block text-sm font-medium">Passengers</label>
-          <div className="flex space-x-4">
-            {Object.entries(passengers).map(([type, count]) => (
-              <div key={type} className="flex items-center space-x-2">
-                <span className="capitalize">{type}</span>
-                <button
-                  onClick={() =>
-                    handlePassengerChange(
-                      type as keyof PassengerCount,
-                      count - 1
-                    )
-                  }
-                  className="rounded border px-2 py-1"
-                >
-                  -
-                </button>
-                <span>{count}</span>
-                <button
-                  onClick={() =>
-                    handlePassengerChange(
-                      type as keyof PassengerCount,
-                      count + 1
-                    )
-                  }
-                  className="rounded border px-2 py-1"
-                >
-                  +
-                </button>
-              </div>
-            ))}
-          </div>
         </div>
 
         <button
           onClick={handleSearch}
-          className="w-full rounded-lg bg-blue-600 py-3 text-white transition-colors hover:bg-blue-700"
+          className="absolute bottom-[-20px] left-1/2 flex min-w-[138px] -translate-x-1/2 transform cursor-pointer items-center justify-center gap-10 rounded-full border-none bg-[#9B297D] px-[24px] py-[16px] font-montserrat text-base font-medium text-white"
         >
-          Search Cruises
+          {t('search-button')}
+          <span className="ml-2 inline-flex h-5 w-5 items-center justify-center rounded-full text-white">
+            <Search />
+          </span>
         </button>
       </div>
     </div>
