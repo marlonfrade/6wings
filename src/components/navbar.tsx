@@ -573,20 +573,20 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
             ) : (
               <>
                 <Button
-                  label={t('auth.login')}
+                  label={t('auth.login-button')}
                   variant="secondary"
-                  onClick={() => handleNavigation('/user/sign-in')}
-                  hoverLabel={t('auth.login')}
+                  onClick={() => handleNavigation('/login')}
+                  hoverLabel={t('auth.login-button')}
                   state="normal"
                   className="w-auto"
                 />
                 <Button
-                  label={t('auth.signup')}
+                  label={t('auth.signup-button')}
                   Icon={() => <ArrowRight color="#363C41" />}
                   iconPosition="right"
                   variant="primary"
                   onClick={() => handleNavigation('/user/sign-up')}
-                  hoverLabel={t('auth.signup')}
+                  hoverLabel={t('auth.signup-button')}
                   state="normal"
                   className="w-auto"
                 />
@@ -691,7 +691,7 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
                       </div>
                     )}
                   </div>
-                  <span className="text-gray-700">Minha Conta</span>
+                  <span className="text-gray-700">{t('auth.myAccount')}</span>
                 </button>
                 <UserMenu
                   isOpen={isUserMenuOpen}
@@ -702,21 +702,21 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
           ) : (
             <>
               <Button
-                label={t('auth.login')}
+                label={t('auth.login-button')}
                 variant="secondary"
                 onClick={() => {
-                  handleNavigation('/user/sign-in')
+                  handleNavigation('/login')
                   toggleMenu()
                 }}
                 centered
                 className="mb-2 w-full"
-                hoverLabel={t('auth.login')}
+                hoverLabel={t('auth.login-button')}
                 Icon={() => null}
                 iconPosition="right"
                 state="normal"
               />
               <Button
-                label={t('auth.signup')}
+                label={t('auth.signup-button')}
                 variant="primary"
                 onClick={() => {
                   handleNavigation('/user/sign-up')
@@ -724,7 +724,7 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
                 }}
                 centered
                 className="w-full"
-                hoverLabel={t('auth.signup')}
+                hoverLabel={t('auth.signup-button')}
                 Icon={() => null}
                 iconPosition="right"
                 state="normal"
