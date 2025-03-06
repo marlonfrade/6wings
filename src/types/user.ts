@@ -13,6 +13,9 @@ export interface User {
   cpf: string
   dados_bancarios: string | null
   token: string
+  tokenExpiration?: number
+  refreshToken?: string
+  refreshTokenExpiration?: number
   admin_id: number | null
   data_cadastro: string
   '6w_parceiro_negocio_id': number | null

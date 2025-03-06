@@ -299,10 +299,30 @@
     }
   },
   "auth": {
-    "login": "Entrar",
-    "signup": "Criar Conta",
+    "login-button": "Entrar",
+    "signup-button": "Criar Conta",
     "logout": "Sair",
-    "myAccount": "Minha Conta"
+    "myAccount": "Minha Conta",
+    "login": {
+      "title": "Acesse sua conta",
+      "email": "E-mail",
+      "email-label": "Digite seu e-mail",
+      "email-error": "Digite seu e-mail",
+      "password": "Senha",
+      "password-label": "Digite sua senha",
+      "password-error": "Digite sua senha",
+      "forgotPassword": "Esqueceu sua senha?",
+      "recoverPassword": "Recuperar senha",
+      "recoverPasswordDescription": "Digite seu e-mail para receber um link de recuperação de senha.",
+      "login": "Acessar Conta",
+      "signup": "Não tem uma conta?",
+      "signup-link": "Criar Conta",
+      "back": "Voltar",
+      "sending": "Enviando...",
+      "emailSent": "E-mail enviado com sucesso!",
+      "emailSentDescription": "Verifique sua caixa de entrada e siga as instruções para recuperar sua senha.",
+      "close": "Fechar"
+    }
   },
   "search": {
     "placeholder": "O que você está procurando?",

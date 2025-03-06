@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react'
+'use client'
+
+import { useSession } from 'next-auth/react'
 
 interface UserResponse {
   id: string
@@ -21,7 +23,7 @@ interface UseUserReturn {
 }
 
 /**
- * Hook to fetch and manage user information
+ * Hook to fetch and manage user information using NextAuth
  *
  * @example
  * ```tsx
@@ -39,41 +41,37 @@ interface UseUserReturn {
  * ```
  */
 export function useUser(): UseUserReturn {
-  const [user, setUser] = useState<UserResponse | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [error, setError] = useState<string | null>(null)
+  const { data: session, status, update } = useSession()
+  console.log(session)
 
-  /**
-   * Fetches the user data from the API
-   * Sets loading state while fetching and handles any errors
-   */
-  const fetchUser = async (): Promise<void> => {
-    try {
-      setIsLoading(true)
-      setError(null)
+  // Mapeia os dados da sessão para o formato UserResponse
+  const mapSessionToUser = (): UserResponse | null => {
+    if (!session?.user) return null
 
-      const response = await fetch('/api/user')
-      const data: UserResponse = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to fetch user data')
-      }
-
-      setUser(data)
-    } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : 'An unknown error occurred'
-      setError(errorMessage)
-      console.error('Error fetching user data:', err)
-    } finally {
-      setIsLoading(false)
+    return {
+      id: (session.user.id as string) || '',
+      nome: session.user.nome || '',
+      email: session.user.email || '',
+      avatar_url: undefined,
+      created_at: new Date().toISOString() // Usando a data atual como fallback
     }
   }
 
-  // Fetch user data on initial mount
-  useEffect(() => {
-    fetchUser()
-  }, [])
+  /**
+   * Atualiza os dados da sessão do usuário
+   */
+  const refetchUser = async (): Promise<void> => {
+    try {
+      await update()
+    } catch (err) {
+      console.error('Erro ao atualizar dados do usuário:', err)
+    }
+  }
 
-  return { user, isLoading, error, refetchUser: fetchUser }
+  return {
+    user: mapSessionToUser(),
+    isLoading: status === 'loading',
+    error: status === 'unauthenticated' ? 'Usuário não autenticado' : null,
+    refetchUser
+  }
 }

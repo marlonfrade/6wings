@@ -298,10 +298,30 @@
     }
   },
   "auth": {
-    "login": "Login",
-    "signup": "Sign Up",
+    "login-button": "Login",
+    "signup-button": "Sign Up",
     "logout": "Logout",
-    "myAccount": "My Account"
+    "myAccount": "My Account",
+    "login": {
+      "title": "Access your account",
+      "email": "E-mail",
+      "email-label": "Type your e-mail",
+      "email-error": "Type your e-mail",
+      "password": "Password",
+      "password-label": "Type your password",
+      "password-error": "Type your password",
+      "forgotPassword": "Forgot your password?",
+      "recoverPassword": "Recover password",
+      "recoverPasswordDescription": "Enter your e-mail to receive a link to reset your password.",
+      "login": "Login",
+      "signup": "Don't have an account?",
+      "signup-link": "Sign Up",
+      "back": "Back",
+      "sending": "Sending...",
+      "emailSent": "E-mail sent successfully!",
+      "emailSentDescription": "Check your inbox and follow the instructions to reset your password.",
+      "close": "Close"
+    }
   },
   "search": {
     "placeholder": "What are you looking for?",
