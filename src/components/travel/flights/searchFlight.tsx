@@ -5,7 +5,8 @@ import { Search, User, Calendar as CalendarIcon } from 'lucide-react'
 import { DateRange } from 'react-day-picker'
 import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
+import { ptBR, enUS } from 'date-fns/locale'
 import { format } from 'date-fns'
 import AirportSelect from '@/components/travel/airportSelect'
 import { DateRangePicker } from '@/components/travel/dateRangePicker'
@@ -27,8 +28,8 @@ import {
 import { cn } from '@/lib/utils'
 
 const travelOptions = [
-  { label: 'Ida e volta', value: 'roundTrip' },
-  { label: 'Somente ida', value: 'oneWay' }
+  { label: 'placeholder-roundtrip', value: 'roundTrip' },
+  { label: 'placeholder-oneway', value: 'oneWay' }
 ] as const
 
 const passengerOptions = [
@@ -42,6 +43,8 @@ const passengerOptions = [
 
 export default function SearchFlight() {
   const t = useTranslations('homepage.travel.search.flights')
+  const locale = useLocale()
+  const local = locale === 'pt-BR' ? ptBR : enUS
   const router = useRouter()
   const [tripType, setTripType] = useState<'roundTrip' | 'oneWay'>('roundTrip')
   const [passengers, setPassengers] = useState('1')
@@ -139,7 +142,7 @@ export default function SearchFlight() {
                   value={option.value}
                   className="cursor-pointer rounded-sm font-montserrat text-sm hover:bg-[#9B297D]/10"
                 >
-                  {option.label}
+                  {t(option.label)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -201,6 +204,7 @@ export default function SearchFlight() {
                   selected={departureDate}
                   onSelect={setDepartureDate}
                   initialFocus
+                  locale={local}
                 />
               </PopoverContent>
             </Popover>

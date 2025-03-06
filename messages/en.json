@@ -7,11 +7,11 @@
       "description": "Enjoy exclusive benefits and earn points.",
       "basic": {
         "title": "Basic Plan",
-        "description": "✅ 1000 points/month\n✅ 30% discount on points purchase\n✅ $39.90/month"
+        "description": "✅ 1000 points/month\n✅ 30% discount on point purchases\n✅ $39.90/month"
       },
       "top": {
         "title": "+TOP Plan",
-        "description": "✅ 4000 points/month\n✅ 35% discount on points purchase\n✅ $129.90/month"
+        "description": "✅ 4000 points/month\n✅ 35% discount on point purchases\n✅ $129.90/month"
       }
     },
     "partners": "Become a Partner",
@@ -38,16 +38,16 @@
   "homepage": {
     "carousel": {
       "cristo": {
-        "title": "Exchange your 6Wings points for",
+        "title": "Exchange your 6wings points for",
         "highlight": "Experiences",
-        "description": "Use your points to ride the Corcovado Train and visit Christ the Redeemer, Rio de Janeiro's most iconic monument",
+        "description": "Use your points to board the Corcovado Train and visit Christ the Redeemer, Rio de Janeiro's most iconic monument",
         "ctaText": "Buy with Points",
         "altText": "Christ the Redeemer Banner"
       },
       "aquario": {
-        "title": "Exchange your 6Wings points for",
+        "title": "Exchange your 6wings points for",
         "highlight": "Tickets",
-        "description": "Exchange your points for tickets at Aqua Rio, Rio de Janeiro's largest aquatic park",
+        "description": "Exchange your points for tickets to Aqua Rio, Rio de Janeiro's largest aquarium",
         "ctaText": "Buy with Points",
         "altText": "Aqua Rio Banner"
       },
@@ -59,9 +59,9 @@
         "altText": "Yabnabi Tourism Banner"
       },
       "canoagem": {
-        "title": "Exchange your 6Wings points for",
+        "title": "Exchange your 6wings points for",
         "highlight": "Adventures",
-        "description": "Use your points to explore the crystal-clear waters of Paraty in an exciting canoeing experience, navigating through mangroves and paradise beaches",
+        "description": "Use your points to explore the crystal clear waters of Paraty in an exciting canoeing experience, navigating through mangroves and paradise beaches",
         "ctaText": "Buy with Points",
         "altText": "Boramar Banner"
       }
@@ -78,50 +78,228 @@
       },
       "search": {
         "flights": {
-          "title": "Find <highlight>cheap flights</highlight> to anywhere",
-          "placeholder-roundtrip": "Round Trip",
-          "placeholder-oneway": "One Way",
-          "placeholder-from": "Departure Airport",
-          "placeholder-to": "Arrival Airport",
-          "placeholder-departure": "Departure Date",
-          "placeholder-return": "Return Date",
+          "title": "Find <highlight>cheap flights</highlight> anywhere",
+          "placeholder-roundtrip": "Round trip",
+          "placeholder-oneway": "One way",
+          "placeholder-from": "From",
+          "placeholder-to": "To",
+          "placeholder-departure": "Departure date",
+          "placeholder-return": "Return date",
           "placeholder-passengers": "Passengers",
           "button-search": "Explore",
           "error-required": "Please fill in all required fields",
           "creating-quote": "Creating quote...",
           "quote-success": "Quote created successfully!",
-          "quote-error": "Error creating quote"
+          "quote-error": "Error creating quote",
+          "select-date": "Select a date",
+          "select-range": "Select a period",
+          "select-return": "Select return",
+          "loading": "Loading Airports...",
+          "airport-placeholder-landing": "City or destination airport",
+          "airport-placeholder-takeoff": "City or departure airport",
+          "error-loading-airports": "Error loading airports",
+          "no-airports-found": "No airports found",
+          "search-airport-min-length": "Type to search"
         },
         "accommodation": {
-          "title": "Find <highlight>accommodations</highlight> worldwide",
-          "placeholder": "City or airport of origin"
+          "title": "Find <highlight>accommodations</highlight> in Brazil",
+          "placeholder": "City or state of origin",
+          "search-error-required": "Please fill in all required fields",
+          "search-loading": "Creating quote...",
+          "search-success": "Quote created successfully!",
+          "search-error": "Error creating quote",
+          "search-button": "Search Accommodations",
+          "select-guests": "Select number of guests",
+          "select-state": "Select a state",
+          "search-state": "Search state",
+          "loading-states": "Loading states...",
+          "error-loading-states": "Error loading states",
+          "no-states-found": "No states found",
+          "select-city": "Select a city",
+          "search-city": "Search city",
+          "loading-cities": "Loading cities...",
+          "error-loading-cities": "Error loading cities",
+          "no-cities-found": "No cities found",
+          "accommodation-type": {
+            "resort": "Resort",
+            "hotel": "Hotel",
+            "pousada": "Inn",
+            "hostel": "Hostel",
+            "camping": "Camping",
+            "lago": "Lake",
+            "iconicos": "Iconic",
+            "chales": "Cottages",
+            "vistas-incriveis": "Amazing views",
+            "frente-praia": "Beachfront",
+            "tropical": "Tropical",
+            "piscinas": "Amazing pools",
+            "interior": "Inland",
+            "fazendas": "Farms",
+            "beira-lago": "Lakefront",
+            "triangulares": "Triangular houses",
+            "arvore": "Treehouses",
+            "ilhas": "Islands",
+            "parques": "National parks",
+            "arredondadas": "Round houses",
+            "terra": "Earth houses",
+            "castelos": "Castles",
+            "surf": "Surf"
+          }
         },
         "carRentals": {
           "title": "Find <highlight>cheap car rentals</highlight> anywhere",
-          "placeholder": "City or airport of origin"
+          "placeholder": "City or state of origin",
+          "select-drivers": "Select number of drivers",
+          "search-error-required": "Please fill in all required fields",
+          "search-loading": "Creating quote...",
+          "search-success": "Quote created successfully!",
+          "search-error": "Error creating quote",
+          "search-button": "Search Car Rentals",
+          "types": {
+            "economico": "Economy",
+            "sedan": "Sedan",
+            "suv": "SUV",
+            "hatchback": "Hatchback",
+            "luxo": "Luxury",
+            "eletrico": "Electric",
+            "compacto": "Compact",
+            "conversivel": "Convertible",
+            "pickup": "Pickup",
+            "minivan": "Minivan",
+            "esportivo": "Sports",
+            "moto": "Motorcycle",
+            "onibus": "Bus",
+            "caravan": "Caravan"
+          }
         },
         "travelPackages": {
-          "title": "Find <highlight>cheap travel packages</highlight> anywhere",
-          "placeholder": "City or airport of origin"
+          "title": "Find <highlight>travel packages</highlight> anywhere",
+          "placeholder-origin": "From",
+          "placeholder-destination": "To",
+          "search-error-required": "Please fill in all required fields",
+          "search-loading": "Creating quote...",
+          "search-success": "Quote created successfully!",
+          "search-error": "Error creating quote",
+          "search-button": "Build Package",
+          "package-types": {
+            "flight-only": {
+              "name": "Flight Only",
+              "description": "Basic package with flight only",
+              "features": [
+                "Flight round trip",
+                "Baggage allowance",
+                "Flight taxes and fees",
+                "Basic travel insurance"
+              ]
+            },
+            "flight-hotel": {
+              "name": "Flight + Hotel",
+              "description": "Package with flight and hotel",
+              "features": [
+                "Flight round trip",
+                "Baggage allowance",
+                "Flight taxes and fees",
+                "Breakfast included",
+                "Airport transfer"
+              ]
+            },
+            "all-inclusive": {
+              "name": "All Inclusive",
+              "description": "Complete package with flight, hotel and car",
+              "features": [
+                "Flight round trip",
+                "Baggage allowance",
+                "Flight taxes and fees",
+                "Breakfast included",
+                "Airport transfer",
+                "All inclusive meals",
+                "All inclusive drinks",
+                "All inclusive activities"
+              ]
+            },
+            "luxury": {
+              "name": "Luxury",
+              "description": "Luxury package with flight, hotel and car",
+              "features": [
+                "Flight round trip",
+                "Baggage allowance",
+                "Flight taxes and fees",
+                "Breakfast included",
+                "Airport transfer",
+                "All inclusive meals",
+                "All inclusive drinks",
+                "All inclusive activities",
+                "Private airport transfer",
+                "Private car rental",
+                "Private guide"
+              ]
+            },
+            "adventure": {
+              "name": "Adventure",
+              "description": "Adventure package with flight, hotel and car",
+              "features": [
+                "Flight round trip",
+                "Baggage allowance",
+                "Flight taxes and fees",
+                "Breakfast included",
+                "Airport transfer",
+                "Adventure activities",
+                "Private guide"
+              ]
+            },
+            "romantic": {
+              "name": "Romantic",
+              "description": "Romantic package with flight, hotel and car",
+              "features": [
+                "Flight round trip",
+                "Baggage allowance",
+                "Flight taxes and fees",
+                "Breakfast included",
+                "Airport transfer",
+                "Romantic activities",
+                "Private guide"
+              ]
+            }
+          }
         },
         "airbnb": {
-          "title": "Find <highlight>cheap Airbnb credits</highlight> anywhere",
-          "placeholder": "City or airport of origin"
+          "title": "Find <highlight>Airbnb credits</highlight> anywhere",
+          "placeholder": "Where do you want to stay?",
+          "search-button": "Search Accommodations",
+          "select-guests": "Select number of guests",
+          "search-error-required": "Please fill in all required fields",
+          "search-loading": "Creating quote...",
+          "search-success": "Quote created successfully!",
+          "search-error": "Error creating quote"
         },
         "cruises": {
           "title": "Find <highlight>cheap cruises</highlight> anywhere",
-          "placeholder": "City or airport of origin"
+          "placeholder": "City or airport of origin",
+          "search-button": "Search Cruises",
+          "select-passengers": "Select number of passengers",
+          "search-error-required": "Please fill in all required fields",
+          "search-loading": "Creating quote...",
+          "search-success": "Quote created successfully!",
+          "search-error": "Error creating quote"
         },
         "buses": {
-          "title": "Find <highlight>cheap bus tickets</highlight> anywhere",
-          "placeholder": "City or airport of origin"
+          "title": "Find <highlight>cheap buses</highlight> anywhere",
+          "from-placeholder": "Origin city",
+          "to-placeholder": "Destination city",
+          "date-title": "Travel Date",
+          "search-button": "Search Buses",
+          "select-passengers": "Select number of passengers",
+          "search-error-required": "Please fill in all required fields",
+          "search-loading": "Creating quote...",
+          "search-success": "Quote created successfully!",
+          "search-error": "Error creating quote"
         }
       }
     }
   },
   "auth": {
     "login": "Login",
-    "signup": "Create Account",
+    "signup": "Sign Up",
     "logout": "Logout",
     "myAccount": "My Account"
   },
@@ -144,25 +322,25 @@
     "points": "points",
     "checkout": "Checkout",
     "continueShopping": "Continue Shopping",
-    "loginToUsePoints": "Sign in to use your points",
-    "signInOrRegister": "Sign In / Register",
+    "loginToUsePoints": "Login to use your points",
+    "signInOrRegister": "Sign Up / Login",
     "yourPoints": "Your points",
     "needMorePoints": "You need {points} more points for this purchase",
     "summary": {
       "subtotal": "Subtotal",
       "shippingNote": "Shipping and taxes calculated at checkout.",
-      "pointsRequired": "Total points required",
+      "pointsRequired": "Total points needed",
       "points": "points"
     }
   },
   "assistant": {
     "welcome": "Hello! How can I help with your shopping today?",
     "suggestions": {
-      "promotions": "See today's promotions",
+      "promotions": "View today's promotions",
       "tracking": "Track my order"
     },
     "input": {
-      "placeholder": "Write your message..."
+      "placeholder": "Type your message..."
     },
     "actions": {
       "send": "Send",
@@ -172,7 +350,7 @@
       "refresh": "Refresh",
       "previous": "Previous",
       "next": "Next",
-      "scrollDown": "Scroll to bottom"
+      "scrollDown": "Scroll down"
     },
     "branch": {
       "separator": "of"
@@ -180,20 +358,20 @@
   },
   "cookies": {
     "title": "Cookie Settings",
-    "message": "We and selected partners use cookies to personalize your experience, measure site performance and deliver relevant content. By clicking \"Accept cookies\", you agree to the use of these technologies.",
+    "message": "We and selected partners use cookies to personalize your experience, measure site performance, and provide relevant content. By clicking \"Accept cookies\", you agree to the use of these technologies.",
     "accept": "Accept all",
     "settings": "Settings",
     "types": {
       "necessary": {
         "title": "Strictly necessary cookies",
-        "description": "Essential for site functionality"
+        "description": "Essential for the website to function"
       },
       "preferences": {
         "title": "Preference cookies",
         "description": "Store your browsing preferences"
       },
       "analytics": {
-        "title": "Analytics cookies",
+        "title": "Usage analysis cookies",
         "description": "Help us understand how you use the site"
       },
       "marketing": {
