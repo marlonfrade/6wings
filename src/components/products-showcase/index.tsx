@@ -41,7 +41,6 @@ export const ProductsShowcase = () => {
 
   const handleCategorySelect = (category: Category) => {
     setActiveCategory(category)
-    console.log('Categoria selecionada:', category)
   }
 
   return (

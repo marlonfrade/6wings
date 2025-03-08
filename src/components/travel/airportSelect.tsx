@@ -100,9 +100,6 @@ export default function AirportSelect({
 
         const data = await response.json()
 
-        // Log the received data for debugging
-        console.log('Received airport data:', data)
-
         // Handle both array format and the format you provided in your example
         if (Array.isArray(data)) {
           return data
@@ -121,15 +118,9 @@ export default function AirportSelect({
     refetchOnWindowFocus: false
   })
 
-  // Log airports data for debugging
-  React.useEffect(() => {
-    console.log('Current airports data:', airports)
-  }, [airports])
-
   // Group airports by city
   const groupedAirports = React.useMemo(() => {
     if (!airports || !Array.isArray(airports) || airports.length === 0) {
-      console.log('No airports to group or invalid format')
       return []
     }
 
@@ -264,32 +255,27 @@ export default function AirportSelect({
             ) : (
               groupedAirports.map((cityGroup) => (
                 <CommandGroup key={cityGroup.city} heading={cityGroup.city}>
-                  {cityGroup.airports.map(
-                    (airport) => (
-                      console.log(airport),
-                      (
-                        <CommandItem
-                          key={airport.id}
-                          value={airport.code}
-                          onSelect={() => {
-                            onChange(airport)
-                            setOpen(false)
-                            setQuery('')
-                          }}
-                        >
-                          {airport.name} ({airport.code})
-                          <Check
-                            className={cn(
-                              'ml-auto',
-                              value?.code === airport.code
-                                ? 'opacity-100'
-                                : 'opacity-0'
-                            )}
-                          />
-                        </CommandItem>
-                      )
-                    )
-                  )}
+                  {cityGroup.airports.map((airport) => (
+                    <CommandItem
+                      key={airport.id}
+                      value={airport.code}
+                      onSelect={() => {
+                        onChange(airport)
+                        setOpen(false)
+                        setQuery('')
+                      }}
+                    >
+                      {airport.name} ({airport.code})
+                      <Check
+                        className={cn(
+                          'ml-auto',
+                          value?.code === airport.code
+                            ? 'opacity-100'
+                            : 'opacity-0'
+                        )}
+                      />
+                    </CommandItem>
+                  ))}
                 </CommandGroup>
               ))
             )}

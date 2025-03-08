@@ -168,7 +168,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         timeLeft > 0 &&
         timeLeft < TOKEN_REFRESH_THRESHOLD
       ) {
-        console.log('Token próximo de expirar, tentando renovar...')
         await refreshToken()
       }
     }

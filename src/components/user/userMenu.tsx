@@ -1,7 +1,6 @@
 'use client'
 
 import { useAuth } from '@/providers/authProvider'
-import { useUser } from '@/hooks/useUser'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
@@ -16,8 +15,6 @@ export const UserMenu = ({
   onClose
 }: UserMenuProps): React.JSX.Element | null => {
   const { user, logout } = useAuth()
-  const { user: userData } = useUser()
-  console.log(userData)
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
   const [userPoints, setUserPoints] = useState<number>(0)
 

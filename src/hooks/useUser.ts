@@ -42,7 +42,6 @@ interface UseUserReturn {
  */
 export function useUser(): UseUserReturn {
   const { data: session, status, update } = useSession()
-  console.log(session)
 
   // Mapeia os dados da sessão para o formato UserResponse
   const mapSessionToUser = (): UserResponse | null => {
