@@ -296,6 +296,15 @@
           "search-error": "Erro ao criar cotação"
         }
       }
+    },
+    "products-showcase": {
+      "title": "O que <highlight>nós</highlight> oferecemos?",
+      "categories": {
+        "products": "Produtos",
+        "services": "Serviços",
+        "experiences": "Experiências",
+        "donations": "Doações"
+      }
     }
   },
   "auth": {

@@ -1,3 +1,10 @@
+export const PRODUCT_CATEGORIES = {
+  PRODUTOS: 'PRODUTOS',
+  SERVICOS: 'SERVICOS',
+  EXPERIENCIAS: 'EXPERIENCIAS',
+  DOACOES: 'DOACOES'
+} as const
+
 export const USER_ROLES = {
   ADMIN: 'AD',
   USER: 'US',

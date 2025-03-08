@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import animate from 'tailwindcss-animate'
 
 const config = {
   darkMode: ['class'],
@@ -107,11 +108,22 @@ const config = {
           to: {
             height: '0'
           }
+        },
+        'glow-pulse': {
+          '0%, 100%': {
+            boxShadow: '0 0 20px #F3E0EE, 0 0 40px #E7C1DD, 0 0 60px #9B297D',
+            filter: 'brightness(1.2)'
+          },
+          '50%': {
+            boxShadow: '0 0 10px #F3E0EE, 0 0 20px #E7C1DD, 0 0 30px #9B297D',
+            filter: 'brightness(1)'
+          }
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out'
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'glow-pulse': 'glow-pulse 3s ease-in-out infinite'
       },
       letterSpacing: {
         tightest: '-.075em',
@@ -129,13 +141,29 @@ const config = {
         normal: '1.5',
         relaxed: '1.625',
         loose: '2'
+      },
+      boxShadow: {
+        glow: '0 0 20px rgba(255, 204, 112, 0.7), 0 0 40px rgba(200, 80, 192, 0.5), 0 0 60px rgba(65, 88, 208, 0.3)',
+        glow2:
+          '0 0 20px rgba(50, 255, 50, 0.7), 0 0 40px rgba(20, 200, 20, 0.5), 0 0 60px rgba(5, 150, 5, 0.3)',
+        'glow-primary':
+          '0 0 20px rgba(155, 41, 125, 0.7), 0 0 40px rgba(155, 41, 125, 0.5), 0 0 60px rgba(155, 41, 125, 0.3)'
+      },
+      filter: {
+        'blur-20': 'blur(20px)',
+        'blur-25': 'blur(25px)'
+      },
+      brightness: {
+        150: '1.5'
       }
     }
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [animate],
   variants: {
     extend: {
-      inset: ['group-hover']
+      inset: ['group-hover'],
+      boxShadow: ['hover', 'focus'],
+      brightness: ['hover', 'focus']
     }
   }
 } satisfies Config

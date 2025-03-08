@@ -8,6 +8,7 @@ import { Navbar } from '@/components/navbar'
 import Carousel from '@/components/carousel'
 import Backdrop from '@/components/backdrop'
 import { TravelNavigation } from '@/components/travel/travelNavigation'
+import { ProductsShowcase } from '@/components/products-showcase'
 import slides from '@/data/slides'
 
 export default function Home() {
@@ -31,6 +32,16 @@ export default function Home() {
                 >
                   <TravelNavigation initialCategory="flights" />
                 </Suspense>
+
+                {/* Seção "O que nós oferecemos?" */}
+                <Suspense
+                  fallback={
+                    <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary" />
+                  }
+                >
+                  <ProductsShowcase />
+                </Suspense>
+
                 <div className="grid h-dvh grid-cols-[200px_1fr] gap-x-2 px-4 py-4">
                   <AssistantModal />
                 </div>
