@@ -113,7 +113,7 @@ export async function GET(request: Request): Promise<NextResponse> {
     }
 
     const { searchParams } = new URL(request.url)
-    const subcategoryId = searchParams.get('subcategoryId')
+    const subcategoryId = searchParams.get('subCategoryId')
 
     let endpoint = `${apiUrl}/fetchAllProducts`
     if (subcategoryId) {

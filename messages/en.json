@@ -295,6 +295,15 @@
           "search-error": "Error creating quote"
         }
       }
+    },
+    "products-showcase": {
+      "title": "What <highlight>we</highlight> offer ?",
+      "categories": {
+        "products": "Products",
+        "services": "Services",
+        "experiences": "Experiences",
+        "donations": "Donations"
+      }
     }
   },
   "auth": {
