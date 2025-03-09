@@ -9,6 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
   hoverLabel?: string
   Icon?: IconType
+  iconColor?: string
   iconPosition?: 'left' | 'right'
   variant?: 'primary' | 'secondary' | 'outline' | 'dark'
   state?: 'normal' | 'hover'
@@ -21,6 +22,7 @@ export const Button = ({
   hoverLabel,
   Icon,
   iconPosition = 'left',
+  iconColor = '#fffff',
   variant = 'primary',
   state = 'normal',
   centered = false,
@@ -63,7 +65,10 @@ export const Button = ({
       {...props}
     >
       {Icon && iconPosition === 'left' && (
-        <Icon className={cn(iconStyles, iconPositionStyles[iconPosition])} />
+        <Icon
+          color={iconColor}
+          className={cn(iconStyles, iconPositionStyles[iconPosition])}
+        />
       )}
       <span
         className={cn(
@@ -74,7 +79,10 @@ export const Button = ({
         {state === 'hover' && hoverLabel ? hoverLabel : label}
       </span>
       {Icon && iconPosition === 'right' && (
-        <Icon className={cn(iconStyles, iconPositionStyles[iconPosition])} />
+        <Icon
+          color={iconColor}
+          className={cn(iconStyles, iconPositionStyles[iconPosition])}
+        />
       )}
     </button>
   )
