@@ -10,6 +10,7 @@ import Backdrop from '@/components/backdrop'
 import { TravelNavigation } from '@/components/travel/travelNavigation'
 import { ProductsShowcase } from '@/components/products-showcase'
 import { BannerBancoAfro } from '@/components/banner/bannerBancoAfro'
+import { BentoOffers } from '@/components/offers/bentoOffers'
 
 import slides from '@/data/slides'
 
@@ -50,6 +51,14 @@ export default function Home() {
                   }
                 >
                   <BannerBancoAfro />
+                </Suspense>
+
+                <Suspense
+                  fallback={
+                    <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary" />
+                  }
+                >
+                  <BentoOffers />
                 </Suspense>
 
                 <div className="grid h-dvh grid-cols-[200px_1fr] gap-x-2 px-4 py-4">

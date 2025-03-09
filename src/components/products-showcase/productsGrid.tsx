@@ -121,7 +121,7 @@ export const ProductsGrid = ({ products, className }: ProductsGridProps) => {
 
   return (
     <div className={cn('w-full', className)}>
-      <Carousel className="w-full">
+      <Carousel className="w-full min-w-[300px]">
         <CarouselContent className="ml-0 sm:ml-4 lg:ml-8">
           {productGroups.map((group, groupIndex) => (
             <CarouselItem key={groupIndex} className="w-full pl-4">
