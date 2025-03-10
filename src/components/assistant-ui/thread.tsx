@@ -18,13 +18,16 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useTranslations } from 'next-intl'
+import React from 'react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { MarkdownText } from '@/components/assistant-ui/markdown-text'
 import { TooltipIconButton } from '@/components/assistant-ui/tooltip-icon-button'
 
-export const Thread: FC = () => {
+export const Thread: FC<{ initialQuestion: string }> = ({
+  initialQuestion = ''
+}) => {
   return (
     <ThreadPrimitive.Root
       className="box-border h-full bg-background"
@@ -49,7 +52,7 @@ export const Thread: FC = () => {
 
         <div className="sticky bottom-0 mt-3 flex w-full max-w-[var(--thread-max-width)] flex-col items-center justify-end rounded-t-lg bg-inherit pb-4">
           <ThreadScrollToBottom />
-          <Composer />
+          <Composer initialQuestion={initialQuestion} />
         </div>
       </ThreadPrimitive.Viewport>
     </ThreadPrimitive.Root>
@@ -117,16 +120,30 @@ const ThreadWelcomeSuggestions: FC = () => {
   )
 }
 
-const Composer: FC = () => {
+const Composer: FC<{ initialQuestion: string }> = ({ initialQuestion }) => {
   const t = useTranslations('assistant')
+  const [shouldAutoSend, setShouldAutoSend] = React.useState(!!initialQuestion)
+
+  // Use effect to trigger auto-send once when initialQuestion is provided
+  React.useEffect(() => {
+    // Reset the state after the component has rendered to prevent continuous auto-sending
+    if (shouldAutoSend) {
+      setTimeout(() => setShouldAutoSend(false), 100)
+    }
+  }, [shouldAutoSend])
+
   return (
     <ComposerPrimitive.Root className="flex w-full flex-wrap items-end rounded-lg border bg-inherit px-2.5 shadow-sm transition-colors ease-in focus-within:border-ring/20">
       <ComposerPrimitive.Input
+        defaultValue={initialQuestion}
         rows={1}
         autoFocus
         placeholder={t('input.placeholder')}
         className="max-h-40 flex-grow resize-none border-none bg-transparent px-2 py-4 text-sm outline-none placeholder:text-muted-foreground focus:ring-0 disabled:cursor-not-allowed"
       />
+      {shouldAutoSend && initialQuestion ? (
+        <ComposerPrimitive.Send className="hidden" />
+      ) : null}
       <ComposerAction />
     </ComposerPrimitive.Root>
   )

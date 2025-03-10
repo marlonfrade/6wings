@@ -3,7 +3,6 @@
 import { Suspense } from 'react'
 import { AssistantRuntimeProvider } from '@assistant-ui/react'
 import { useChatRuntime } from '@assistant-ui/react-ai-sdk'
-import { AssistantModal } from '@/components/assistant-ui/assistant-modal'
 import { Navbar } from '@/components/navbar'
 import Carousel from '@/components/carousel'
 import Backdrop from '@/components/backdrop'
@@ -11,8 +10,13 @@ import { TravelNavigation } from '@/components/travel/travelNavigation'
 import { ProductsShowcase } from '@/components/products-showcase'
 import { BannerBancoAfro } from '@/components/banner/bannerBancoAfro'
 import { BentoOffers } from '@/components/offers/bentoOffers'
+import { VelocityScroll } from '@/components/ui/magicui/scroll-based-velocity'
+import { AssistantSection } from '@/components/assistant-ui/assistant-section'
+import { SixWingsBentoGrid } from '@/components/6wings-bento-grid'
+import Footer from '@/components/footer'
 
 import slides from '@/data/slides'
+import { QuickPromotionsCarousel } from '@/components/offers/quickPromotionsCarousel'
 
 export default function Home() {
   const runtime = useChatRuntime({
@@ -61,12 +65,51 @@ export default function Home() {
                   <BentoOffers />
                 </Suspense>
 
-                <div className="grid h-dvh grid-cols-[200px_1fr] gap-x-2 px-4 py-4">
-                  <AssistantModal />
-                </div>
+                <Suspense
+                  fallback={
+                    <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary" />
+                  }
+                >
+                  <div className="relative w-full overflow-hidden py-24">
+                    <VelocityScroll
+                      defaultVelocity={3}
+                      numRows={2}
+                      className="bg-gradient-to-r from-background bg-clip-text text-primary/10"
+                    >
+                      6WINGS • VIAJE COM LIBERDADE • EXPLORE SEM LIMITES •
+                    </VelocityScroll>
+                    <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+                  </div>
+                </Suspense>
+
+                <Suspense
+                  fallback={
+                    <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary" />
+                  }
+                >
+                  <QuickPromotionsCarousel />
+                </Suspense>
+
+                <Suspense
+                  fallback={
+                    <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary" />
+                  }
+                >
+                  <SixWingsBentoGrid />
+                </Suspense>
+
+                <Suspense
+                  fallback={
+                    <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary" />
+                  }
+                >
+                  <AssistantSection />
+                </Suspense>
               </div>
             </div>
           </div>
+          <Footer />
         </main>
       </Suspense>
     </AssistantRuntimeProvider>

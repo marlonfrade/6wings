@@ -41,7 +41,21 @@ body {
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --wave-animation-duration: 15s;
   }
+
+  @keyframes wave {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-wave {
+    animation: wave 15s linear infinite;
+  }
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -93,8 +107,6 @@ body {
   left: 50%;
   transform: translateX(-50%);
 }
-
-
 
 @layer base {
   * {

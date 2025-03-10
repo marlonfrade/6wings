@@ -13,9 +13,17 @@ import {
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 
-export function AssistantModal() {
+export function AssistantModal({
+  isOpen,
+  onClose,
+  initialQuestion
+}: {
+  isOpen: boolean
+  onClose: () => void
+  initialQuestion: string
+}) {
   return (
-    <AssistantModalPrimitive.Root>
+    <AssistantModalPrimitive.Root open={isOpen} onOpenChange={onClose}>
       <AssistantModalPrimitive.Anchor className="fixed bottom-4 right-4">
         <AssistantModalPrimitive.Trigger asChild>
           <AssistantModalButton />
@@ -31,7 +39,7 @@ export function AssistantModal() {
           transform: 'none'
         }}
       >
-        <Thread />
+        <Thread initialQuestion={initialQuestion} />
       </AssistantModalPrimitive.Content>
     </AssistantModalPrimitive.Root>
   )
