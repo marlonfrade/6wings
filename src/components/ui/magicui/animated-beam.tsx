@@ -1,13 +1,12 @@
 'use client'
 
+import React, { useRef, RefObject, useEffect, useId, useState } from 'react'
 import { motion } from 'motion/react'
-import { RefObject, useEffect, useId, useState } from 'react'
-
 import { cn } from '@/lib/utils'
 
 export interface AnimatedBeamProps {
   className?: string
-  containerRef: RefObject<HTMLElement | null> // Container ref
+  containerRef: RefObject<HTMLElement | null>
   fromRef: RefObject<HTMLElement | null>
   toRef: RefObject<HTMLElement | null>
   curvature?: number
@@ -31,7 +30,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   fromRef,
   toRef,
   curvature = 0,
-  reverse = false, // Include the reverse prop
+  reverse = false,
   duration = Math.random() * 3 + 4,
   delay = 0,
   pathColor = 'gray',
@@ -182,5 +181,33 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
         </motion.linearGradient>
       </defs>
     </svg>
+  )
+}
+
+// This is a simplified version of AnimatedBeam that doesn't require refs
+// It's used for demo purposes in the bento grid
+export const AnimatedBeamDemo = ({ className }: { className?: string }) => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const fromRef = useRef<HTMLDivElement>(null)
+  const toRef = useRef<HTMLDivElement>(null)
+
+  return (
+    <div ref={containerRef} className={cn('relative h-full w-full', className)}>
+      <div
+        ref={fromRef}
+        className="absolute left-1/4 top-3/4 h-2 w-2 opacity-0"
+      />
+      <div
+        ref={toRef}
+        className="absolute right-1/4 top-1/4 h-2 w-2 opacity-0"
+      />
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={fromRef}
+        toRef={toRef}
+        className={className}
+        duration={3}
+      />
+    </div>
   )
 }
