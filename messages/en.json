@@ -580,5 +580,67 @@
     "privacy": "Privacy policy",
     "cookies": "Cookie settings",
     "copyright": "Developed by <highlight>Monkeybranch</highlight> © 2024 6Wings. All rights reserved."
+  },
+  "Points": {
+    "pageTitle": "My Points - 6Wings",
+    "pageDescription": "Manage and redeem your 6Wings loyalty points",
+    "title": "My Points",
+    "description": "Earn points with every purchase and redeem them for exclusive rewards and discounts.",
+    "buyPoints": {
+      "title": "Buy points for yourself or someone else",
+      "readRegulations": "Read the regulations",
+      "termsAndConditions": "Terms and conditions",
+      "startingFrom": "Buy starting from",
+      "points": "points",
+      "receivePoints": "You will receive the points as soon as your payment is approved. The maximum time is up to 2 business days.",
+      "validity": "Your points will be valid for 2 years.",
+      "purchaseDetails": "Purchase details",
+      "howManyPoints": "How many points do you want to buy?",
+      "minMax": "Minimum 1,000 pts, maximum 2,000,000 pts",
+      "forWhom": "Who are you buying these points for?",
+      "forYou": "For yourself",
+      "forFriend": "For a friend",
+      "friendEmail": "Friend's Email",
+      "friendEmailPlaceholder": "Enter your friend's email",
+      "friendEmailHelp": "We'll send the points directly to your friend's account",
+      "coupon": "Enter your coupon here",
+      "couponPlaceholder": "Enter your coupon code here",
+      "applyCoupon": "Apply coupon",
+      "couponInstructions": "Enter the coupon and click on the icon to apply",
+      "subtotal": "Subtotal",
+      "total": "Total",
+      "buyButton": "BUY POINTS"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "earn": {
+        "title": "Earn",
+        "description": "Get points for every purchase you make on our platform."
+      },
+      "accumulate": {
+        "title": "Accumulate",
+        "description": "Your points never expire. Keep collecting them for bigger rewards."
+      },
+      "redeem": {
+        "title": "Redeem",
+        "description": "Exchange your points for discounts, products, or special offers."
+      }
+    },
+    "yourPoints": {
+      "title": "Your Points Balance",
+      "available": "Available Points",
+      "pending": "Pending Points",
+      "viewHistory": "View Points History"
+    },
+    "rewards": {
+      "title": "Available Rewards",
+      "description": "Check out what you can get with your points",
+      "points": "points",
+      "redeem": "Redeem",
+      "example": {
+        "title": "Discount Coupon",
+        "description": "Get a 10% discount on your next purchase"
+      }
+    }
   }
 }

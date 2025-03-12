@@ -120,7 +120,6 @@
           "loading-cities": "Carregando cidades...",
           "error-loading-cities": "Erro ao carregar cidades",
           "no-cities-found": "Nenhuma cidade encontrada",
-
           "accommodation-type": {
             "resort": "Resort",
             "hotel": "Hotel",
@@ -518,6 +517,68 @@
     },
     "branch": {
       "separator": "de"
+    }
+  },
+  "Points": {
+    "pageTitle": "Meus Pontos - 6Wings",
+    "pageDescription": "Gerencie e resgate seus pontos de fidelidade 6Wings",
+    "title": "Meus Pontos",
+    "description": "Ganhe pontos com cada compra e troque-os por recompensas e descontos exclusivos.",
+    "buyPoints": {
+      "title": "Compre pontos para você ou para outra pessoa",
+      "readRegulations": "Ler o regulamento",
+      "termsAndConditions": "Termos e condições",
+      "startingFrom": "Compre a partir de",
+      "points": "pontos",
+      "receivePoints": "Você vai receber os pontos logo que o seu pagamento for aprovado. O prazo máximo é de até 2 dias úteis.",
+      "validity": "Seus pontos terão validade de 2 anos.",
+      "purchaseDetails": "Detalhes da compra",
+      "howManyPoints": "Quantos pontos você quer comprar?",
+      "minMax": "Mínimo 1.000 pts, máximo 2.000.000 pts",
+      "forWhom": "Para quem você quer comprar esses pontos?",
+      "forYou": "Para você",
+      "forFriend": "Para um amigo",
+      "friendEmail": "Email do Amigo",
+      "friendEmailPlaceholder": "Digite o email do seu amigo",
+      "friendEmailHelp": "Enviaremos os pontos diretamente para a conta do seu amigo",
+      "coupon": "Insira seu cupom aqui",
+      "couponPlaceholder": "Insira seu cupom aqui",
+      "applyCoupon": "Inserir cupom",
+      "couponInstructions": "Insira o cupom e clique no ícone para adicionar",
+      "subtotal": "Sub-total",
+      "total": "Total",
+      "buyButton": "COMPRAR PONTOS"
+    },
+    "howItWorks": {
+      "title": "Como Funciona",
+      "earn": {
+        "title": "Ganhe",
+        "description": "Receba pontos por cada compra que você fizer em nossa plataforma."
+      },
+      "accumulate": {
+        "title": "Acumule",
+        "description": "Seus pontos nunca expiram. Continue coletando-os para recompensas maiores."
+      },
+      "redeem": {
+        "title": "Resgate",
+        "description": "Troque seus pontos por descontos, produtos ou ofertas especiais."
+      }
+    },
+    "yourPoints": {
+      "title": "Seu Saldo de Pontos",
+      "available": "Pontos Disponíveis",
+      "pending": "Pontos Pendentes",
+      "viewHistory": "Ver Histórico de Pontos"
+    },
+    "rewards": {
+      "title": "Recompensas Disponíveis",
+      "description": "Veja o que você pode obter com seus pontos",
+      "points": "pontos",
+      "redeem": "Resgatar",
+      "example": {
+        "title": "Cupom de Desconto",
+        "description": "Obtenha 10% de desconto em sua próxima compra"
+      }
     }
   },
   "cookies": {
