@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 import { AssistantRuntimeProvider } from '@assistant-ui/react'
 import { useChatRuntime } from '@assistant-ui/react-ai-sdk'
 import { useTranslations } from 'next-intl'
@@ -26,6 +26,9 @@ export default function Home() {
   const runtime = useChatRuntime({
     api: '/api/chat'
   })
+
+  const [isAssistantOpen, setIsAssistantOpen] = useState(false)
+  const [initialQuestion, setInitialQuestion] = useState('')
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>
@@ -109,7 +112,12 @@ export default function Home() {
                     <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary" />
                   }
                 >
-                  <AssistantSection />
+                  <AssistantSection
+                    isAssistantOpen={isAssistantOpen}
+                    setIsAssistantOpen={setIsAssistantOpen}
+                    initialQuestion={initialQuestion}
+                    setInitialQuestion={setInitialQuestion}
+                  />
                 </Suspense>
               </div>
               <div className="z-[10000000000000000]">
