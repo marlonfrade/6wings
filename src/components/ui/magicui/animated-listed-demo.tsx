@@ -2,6 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import { AnimatedList } from './animated-list'
+import { useTranslations } from 'next-intl'
 
 interface Item {
   name: string
@@ -13,39 +14,56 @@ interface Item {
 
 let notifications = [
   {
-    name: 'Payment received',
-    description: 'Magic UI',
-    time: '15m ago',
+    name: 'card-2.background-notifications.notification-1.name',
+    description: 'card-2.background-notifications.notification-1.description',
+    time: 'card-2.background-notifications.notification-1.time',
 
     icon: '💸',
     color: '#00C9A7'
   },
   {
-    name: 'User signed up',
-    description: 'Magic UI',
-    time: '10m ago',
+    name: 'card-2.background-notifications.notification-2.name',
+    description: 'card-2.background-notifications.notification-2.description',
+    time: 'card-2.background-notifications.notification-2.time',
     icon: '👤',
     color: '#FFB800'
   },
   {
-    name: 'New message',
-    description: 'Magic UI',
-    time: '5m ago',
-    icon: '💬',
+    name: 'card-2.background-notifications.notification-3.name',
+    description: 'card-2.background-notifications.notification-3.description',
+    time: 'card-2.background-notifications.notification-3.time',
+    icon: '💰',
     color: '#FF3D71'
   },
   {
-    name: 'New event',
-    description: 'Magic UI',
-    time: '2m ago',
+    name: 'card-2.background-notifications.notification-4.name',
+    description: 'card-2.background-notifications.notification-4.description',
+    time: 'card-2.background-notifications.notification-4.time',
     icon: '🗞️',
     color: '#1E86FF'
+  },
+  {
+    name: 'card-2.background-notifications.notification-5.name',
+    description: 'card-2.background-notifications.notification-5.description',
+    time: 'card-2.background-notifications.notification-5.time',
+
+    icon: '🎉',
+    color: '#00C9A7'
+  },
+  {
+    name: 'card-2.background-notifications.notification-6.name',
+    description: 'card-2.background-notifications.notification-6.description',
+    time: 'card-2.background-notifications.notification-6.time',
+    icon: '👤',
+    color: '#FFB800'
   }
 ]
 
 notifications = Array.from({ length: 10 }, () => notifications).flat()
 
 const Notification = ({ name, description, icon, color, time }: Item) => {
+  const t = useTranslations('homepage.bento-grid')
+
   return (
     <figure
       className={cn(
@@ -69,12 +87,12 @@ const Notification = ({ name, description, icon, color, time }: Item) => {
         </div>
         <div className="flex flex-col overflow-hidden">
           <figcaption className="flex flex-row items-center whitespace-pre text-lg font-medium dark:text-white">
-            <span className="text-sm sm:text-lg">{name}</span>
+            <span className="text-sm sm:text-lg">{t(name)}</span>
             <span className="mx-1">·</span>
-            <span className="text-xs text-gray-500">{time}</span>
+            <span className="text-xs text-gray-500">{t(time)}</span>
           </figcaption>
           <p className="text-sm font-normal dark:text-white/60">
-            {description}
+            {t(description)}
           </p>
         </div>
       </div>

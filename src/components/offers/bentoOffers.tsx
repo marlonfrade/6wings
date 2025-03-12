@@ -7,11 +7,14 @@ import { useState } from 'react'
 import { BentoGrid } from '@/components/ui/magicui/bento-grid'
 import Typography from '@/components/typography'
 import { Button } from '@/components/button'
+
 import ads from '@/data/ads'
 import { cn } from '@/lib/utils'
+import { useTranslations } from 'next-intl'
 
 export const BentoOffers = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const t = useTranslations('homepage.offers.grid')
 
   return (
     <div className="mx-auto max-w-[1400px] p-2">
@@ -27,19 +30,19 @@ export const BentoOffers = () => {
               variant="advert-1"
               className="mb-8 max-w-md text-center"
             >
-              {ads[0].title}
+              {t('card-1.title')}
             </Typography>
             <div className="relative h-[200px] w-full">
               <Image
                 src={ads[0].image}
-                alt={ads[0].title}
+                alt={t('card-1.altText')}
                 fill
                 className="object-contain transition-transform duration-500 ease-in-out group-hover:scale-105"
               />
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 transform transition-all duration-300 ease-in-out">
                 <Button
                   variant="primary"
-                  label={ads[0].ctaText}
+                  label={t('card-1.cta')}
                   Icon={() => <ArrowRightIcon />}
                   iconPosition="right"
                   className={cn(
@@ -65,20 +68,20 @@ export const BentoOffers = () => {
                 variant="advert-2"
                 className="max-w-md text-[40px] font-bold transition-transform duration-300 group-hover:translate-y-[-5px]"
               >
-                {ads[1].title}
+                {t('card-2.title')}
               </Typography>
               <Typography
                 variant="advert-subtitle-1"
                 className="mt-2 max-w-[50%] leading-[-0.05em] transition-transform duration-300 group-hover:translate-y-[-5px]"
               >
-                {ads[1].description}
+                {t('card-2.description')}
               </Typography>
             </div>
             <div className="relative flex h-full w-full flex-col items-end justify-between">
               <div className="transition-all duration-300 ease-in-out">
                 <Button
                   variant="primary"
-                  label={ads[1].ctaText}
+                  label={t('card-2.cta')}
                   className={cn(
                     'mb-4 w-fit transition-all duration-300',
                     hoveredCard === 2 ? 'scale-110' : ''
@@ -90,7 +93,7 @@ export const BentoOffers = () => {
               <div className="absolute bottom-[5%] right-[5%] h-[200px] w-full min-w-[300px] overflow-hidden rounded-lg">
                 <Image
                   src={ads[1].image}
-                  alt={ads[1].title}
+                  alt={t('card-2.altText')}
                   fill
                   className="rounded-lg object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
                 />
@@ -110,12 +113,12 @@ export const BentoOffers = () => {
             variant="advert-3"
             className="z-10 mb-2 max-w-[60%] transition-transform duration-300 group-hover:translate-y-[-5px]"
           >
-            {ads[2].title}
+            {t('card-3.title')}
           </Typography>
           <div className="absolute right-[10%] top-[37%] h-full max-h-[220px] w-[55%] overflow-hidden">
             <Image
               src={ads[2].image}
-              alt={ads[2].title}
+              alt={t('card-3.altText')}
               fill
               className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
             />
@@ -123,7 +126,7 @@ export const BentoOffers = () => {
           <div className="z-10 ml-6 mt-[100px] w-fit transition-all duration-300 ease-in-out">
             <Button
               variant="primary"
-              label={ads[2].ctaText}
+              label={t('card-3.cta')}
               className={cn(
                 'transition-all duration-300',
                 hoveredCard === 3 ? 'scale-110' : ''
@@ -146,18 +149,18 @@ export const BentoOffers = () => {
               variant="advert-4"
               className="transition-transform duration-300 group-hover:translate-y-[-5px]"
             >
-              {ads[3].title}
+              {t('card-4.title')}
             </Typography>
             <Typography
               variant="advert-subtitle-2"
               className="mt-6 max-w-[50%] transition-transform duration-300 group-hover:translate-y-[-5px]"
             >
-              {ads[3].description}
+              {t('card-4.description')}
             </Typography>
             <div className="mt-6 transition-all duration-300 ease-in-out">
               <Button
                 variant="primary"
-                label={ads[3].ctaText}
+                label={t('card-4.cta')}
                 className={cn(
                   'transition-all duration-300',
                   hoveredCard === 4 ? 'scale-110' : ''
@@ -171,13 +174,12 @@ export const BentoOffers = () => {
             variant="advert-subtitle-3"
             className="relative z-10 mt-14 text-start"
           >
-            Campanha válida de 01 a 30/04/2024. Consulte o regulamento. Sujeito
-            a disponibilidade, taxas não inclusas. Imagens ilustrativas
+            {t('card-4.imageDescription')}
           </Typography>
           <div className="absolute left-[3%] top-[29%] h-full max-h-[240px] w-full max-w-[450px] overflow-hidden">
             <Image
               src={ads[3].image}
-              alt={ads[3].title}
+              alt={t('card-4.altText')}
               fill
               className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
             />

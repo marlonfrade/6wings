@@ -532,7 +532,6 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
 
         {/* Adding the right-side components */}
         <div className="flex items-center space-x-4">
-          <LocaleSwitcher />
           <div className="mr-4 hidden items-center justify-center space-x-2 lg:flex">
             {user ? (
               <>
@@ -595,7 +594,7 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
           </div>
 
           <div
-            className="relative mr-4 cursor-pointer"
+            className="relative mr-2 cursor-pointer"
             onClick={handleCartClick}
           >
             <Image
@@ -611,6 +610,7 @@ export function Navbar({ hasOffset = true }: NavbarProps) {
             )}
           </div>
           <SearchButton />
+          <LocaleSwitcher />
 
           {/* Mobile menu button */}
           <button

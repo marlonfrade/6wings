@@ -14,6 +14,7 @@ import {
 import Typography from '@/components/typography'
 import PromotionCard from './promotionCard'
 import QuickPromotionsSkeleton from './quickPromotionsSkeleton'
+import { useTranslations } from 'next-intl'
 
 interface Promotion {
   id: string
@@ -42,7 +43,7 @@ export const QuickPromotionsCarousel = () => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>()
   const [canScrollPrev, setCanScrollPrev] = useState(false)
   const [canScrollNext, setCanScrollNext] = useState(false)
-
+  const t = useTranslations('homepage')
   const {
     data: promotions,
     isLoading,
@@ -90,7 +91,11 @@ export const QuickPromotionsCarousel = () => {
         <div className="mb-8 flex flex-col justify-between md:mb-14 md:flex-row md:items-end lg:mb-16">
           <div>
             <Typography variant="quick-promotions">
-              Promoções <span className="text-primary">rápidas</span>
+              {t.rich('quick-promotions.title', {
+                highlight: (chunks) => (
+                  <span className="text-primary">{chunks}</span>
+                )
+              })}
             </Typography>
           </div>
           <div className="mt-8 flex shrink-0 items-center justify-start gap-2">
