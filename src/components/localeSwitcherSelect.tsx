@@ -15,9 +15,14 @@ type Props = {
   children: ReactNode
   defaultValue: string
   label: string
+  onClose?: () => void
 }
 
-export default function LocaleSwitcherSelect({ defaultValue, label }: Props) {
+export default function LocaleSwitcherSelect({
+  defaultValue,
+  label,
+  onClose
+}: Props) {
   const router = useRouter()
 
   const pathname = usePathname()
@@ -31,12 +36,21 @@ export default function LocaleSwitcherSelect({ defaultValue, label }: Props) {
       { pathname, params },
       { locale: nextLocale as Locale }
     )
+
+    // Close the dropdown after selection
+    if (onClose) {
+      onClose()
+    }
   }
 
   return (
-    <Select defaultValue={defaultValue} onValueChange={onSelectChange}>
+    <Select
+      defaultValue={defaultValue}
+      onValueChange={onSelectChange}
+      onOpenChange={(open) => !open && onClose?.()}
+    >
       <SelectTrigger
-        className="h-8 w-[80px] border-none bg-transparent focus:ring-0 focus:ring-offset-0"
+        className="h-8 w-[80px] border-none bg-background shadow-sm focus:ring-0 focus:ring-offset-0"
         aria-label={label}
       >
         <SelectValue />

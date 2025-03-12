@@ -13,18 +13,10 @@ import {
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 
-export function AssistantModal({
-  isOpen,
-  onClose,
-  initialQuestion
-}: {
-  isOpen: boolean
-  onClose: () => void
-  initialQuestion: string
-}) {
+export function AssistantModal() {
   return (
-    <AssistantModalPrimitive.Root open={isOpen} onOpenChange={onClose}>
-      <AssistantModalPrimitive.Anchor className="fixed bottom-4 right-4">
+    <AssistantModalPrimitive.Root>
+      <AssistantModalPrimitive.Anchor className="fixed bottom-4 right-4 z-50">
         <AssistantModalPrimitive.Trigger asChild>
           <AssistantModalButton />
         </AssistantModalPrimitive.Trigger>
@@ -39,31 +31,35 @@ export function AssistantModal({
           transform: 'none'
         }}
       >
-        <Thread initialQuestion={initialQuestion} />
+        <Thread />
       </AssistantModalPrimitive.Content>
     </AssistantModalPrimitive.Root>
   )
 }
 
-type AssistantModalButtonProps = { 'data-state'?: 'open' | 'closed' }
+type AssistantModalButtonProps = {
+  'data-state'?: 'open' | 'closed'
+  onClick?: () => void
+}
 
 const AssistantModalButton = forwardRef<
   HTMLButtonElement,
   AssistantModalButtonProps
->(({ 'data-state': state, ...rest }, ref) => {
+>(({ 'data-state': state, onClick, ...rest }, ref) => {
   const tooltip = state === 'open' ? 'Fechar Assistente' : 'Abrir Assistente'
 
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>
+        <TooltipTrigger asChild className="z-[10]">
           <Button
             variant="default"
             size="icon"
-            className="fixed bottom-4 right-4 m-0 inline-flex h-16 w-16 cursor-pointer items-center justify-center rounded-full border border-primary bg-white bg-none p-0 text-sm font-medium normal-case leading-5 shadow transition-transform hover:scale-105 hover:bg-gray-100 hover:text-gray-900 active:scale-95 disabled:pointer-events-none disabled:opacity-50"
+            className="fixed bottom-4 right-4 z-[10000000000000000] m-0 inline-flex h-16 w-16 cursor-pointer items-center justify-center rounded-full border border-primary bg-white bg-none p-0 text-sm font-medium normal-case leading-5 shadow transition-transform hover:scale-105 hover:bg-gray-100 hover:text-gray-900 active:scale-95 disabled:pointer-events-none disabled:opacity-50"
             {...rest}
             ref={ref}
-            style={{ zIndex: 1000 }}
+            style={{ zIndex: 10000000000000000 }}
+            onClick={onClick}
           >
             <Image
               src="/images/logos/6wings-logo.png"

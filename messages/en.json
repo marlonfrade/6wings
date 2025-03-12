@@ -304,6 +304,140 @@
         "experiences": "Experiences",
         "donations": "Donations"
       }
+    },
+    "banner": {
+      "title": "Discover 6Wings - the Banco Afro rewards program",
+      "description": "Create your card at Banco Afro today and start earning 6Wings points. Every purchase turns into exclusive benefits for you!",
+      "cta": "CREATE YOUR CARD",
+      "altText": "6Wings Banco Afro Banner"
+    },
+    "offers": {
+      "grid": {
+        "card-1": {
+          "title": "Take Advantage of the Surprise Offer",
+          "description": "",
+          "cta": "Learn More",
+          "altText": "Surprise Offer Banner",
+          "imageDescription": ""
+        },
+        "card-2": {
+          "title": "45% OFF",
+          "description": "Special Market and Beverages with discounts up to 45%",
+          "cta": "Learn More",
+          "altText": "Surprise Offer Banner",
+          "imageDescription": ""
+        },
+        "card-3": {
+          "title": "Enjoy July vacations with 6Wings points",
+          "description": "",
+          "cta": "Learn More",
+          "altText": "Surprise Offer Banner",
+          "imageDescription": ""
+        },
+        "card-4": {
+          "title": "Secure flights with 30% OFF",
+          "description": "fly to Greece, Croatia, Malta and Albania",
+          "cta": "Learn More",
+          "altText": "Travel Banner",
+          "imageDescription": "Campaign valid from 04/01/2024 to 04/30/2024. Check the regulations. Subject to availability, taxes not included. Illustrative images"
+        }
+      }
+    },
+    "marquee": {
+      "text-1": "6Wings",
+      "text-2": "Travel with Freedom",
+      "text-3": "Explore without Limits"
+    },
+    "quick-promotions": {
+      "title": "Quick <highlight>Promotions</highlight>"
+    },
+    "bento-grid": {
+      "card-1": {
+        "title": "Browse 6Wings",
+        "description": "Discover amazing products, services and experiences",
+        "cta": "Search Products",
+        "altText": "Browse 6Wings Banner",
+        "background-card-1": {
+          "title": "Products",
+          "description": "Browse products available on 6Wings"
+        },
+        "background-card-2": {
+          "title": "Services",
+          "description": "Browse services available on 6Wings"
+        },
+        "background-card-3": {
+          "title": "Experiences",
+          "description": "Browse experiences available on 6Wings"
+        },
+        "background-card-4": {
+          "title": "Donations",
+          "description": "Browse donations available on 6Wings"
+        },
+        "background-card-5": {
+          "title": "Travel Packages",
+          "description": "Browse travel packages available on 6Wings"
+        }
+      },
+      "card-2": {
+        "title": "6Wings Club",
+        "description": "Discover all Club benefits starting at $39.90",
+        "cta": "Learn More",
+        "altText": "6Wings Club Banner",
+        "background-notifications": {
+          "notification-1": {
+            "name": "Payment Completed",
+            "description": "Received Basic Plan payment from John Doe",
+            "time": "10m ago"
+          },
+          "notification-2": {
+            "name": "+1000 6Wings Points",
+            "description": "Your points quota is available",
+            "time": "10m ago"
+          },
+          "notification-3": {
+            "name": "30% OFF",
+            "description": "Exclusive discount for your 6Wings Plan",
+            "time": "10m ago"
+          },
+          "notification-4": {
+            "name": "Upgrade to +TOP Plan",
+            "description": "Upgrade to +TOP Plan and get 4000 points",
+            "time": "10m ago"
+          },
+          "notification-5": {
+            "name": "Congratulations!",
+            "description": "You have upgraded to +TOP Plan",
+            "time": "10m ago"
+          },
+          "notification-6": {
+            "name": "+4000 6Wings Points",
+            "description": "You have received 4000 points in your new +TOP Plan",
+            "time": "10m ago"
+          }
+        }
+      },
+      "card-3": {
+        "title": "Become a 6Wings partner",
+        "description": "Connect to our network and take advantage of <highlight>+ 40,000,000</highlight> qualified leads",
+        "cta": "Learn More",
+        "altText": "Become a 6Wings partner Banner"
+      },
+      "card-4": {
+        "title": "Global Experiences",
+        "description": "Explore amazing experiences around the world with 6Wings points",
+        "cta": "Learn More",
+        "altText": "Global Experiences Banner"
+      }
+    },
+    "assistant-section": {
+      "title": "Answer your questions with the 6wings bot",
+      "description": "Hello! I'm the 6Wings Bot, your virtual assistant. How can I help you today? I can assist with: • Product search • Order information • Delivery questions • Customer support",
+      "chat-input": {
+        "placeholder": "Ask your question...",
+        "placeholder-loading": "6wings bot is thinking...",
+        "placeholder-complete": "6wings bot is ready!",
+        "button": "Send"
+      }
     }
   },
   "auth": {
@@ -409,6 +543,43 @@
       }
     },
     "save": "Save preferences"
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Stay Connected",
+      "sub-title": "Subscribe to our newsletter to receive updates and exclusive offers.",
+      "input": {
+        "placeholder": "Enter your email",
+        "button": "Subscribe"
+      }
+    },
+    "quick-links": {
+      "title": "Quick Links",
+      "links": {
+        "home": "Home",
+        "shopping": "Shopping",
+        "partner": "Become a partner",
+        "points": "6Wings Points",
+        "club": "6Wings Club",
+        "about": "About us",
+        "contact": "Contact"
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "company": "6wings Brazil"
+    },
+    "social-media": {
+      "title": "Social Media",
+      "facebook": "Follow us on Facebook",
+      "instagram": "Follow us on Instagram",
+      "twitter": "Follow us on Twitter",
+      "youtube": "Follow us on YouTube"
+    },
+    "terms": "Terms of use",
+    "privacy": "Privacy policy",
+    "cookies": "Cookie settings",
+    "copyright": "Developed by <highlight>Monkeybranch</highlight> © 2024 6Wings. All rights reserved."
   },
   "Points": {
     "pageTitle": "My Points - 6Wings",

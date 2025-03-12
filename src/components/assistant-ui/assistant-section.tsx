@@ -1,33 +1,34 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { Montserrat } from 'next/font/google'
 import Image from 'next/image'
 
 import { AIInputWithLoading } from '@/components/ui/ai-input-with-loading'
-import { AssistantModal } from '@/components/assistant-ui/assistant-modal'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { useTranslations } from 'next-intl'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
   weight: ['100', '200', '300', '400', '500', '600', '700', '800']
 })
 
-export function AssistantSection() {
-  const [isAssistantOpen, setIsAssistantOpen] = useState(false)
-  const [initialQuestion, setInitialQuestion] = useState('')
-
+export function AssistantSection({
+  setIsAssistantOpen,
+  setInitialQuestion
+}: {
+  isAssistantOpen: boolean
+  setIsAssistantOpen: (isOpen: boolean) => void
+  initialQuestion: string
+  setInitialQuestion: (question: string) => void
+}) {
+  const t = useTranslations('homepage.assistant-section')
   const handleSubmit = (value: string) => {
     if (value.trim()) {
       setInitialQuestion(value)
       setIsAssistantOpen(true)
     }
-  }
-
-  const handleCloseModal = () => {
-    setIsAssistantOpen(false)
-    setInitialQuestion('')
   }
 
   return (
@@ -57,7 +58,7 @@ export function AssistantSection() {
                 'mb-4 font-prompt text-[48px] font-black leading-[120%] tracking-[-0.02em] text-white'
               }
             >
-              Tire suas dúvidas falando com o 6Wings bot
+              {t('title')}
             </h2>
           </div>
 
@@ -79,10 +80,7 @@ export function AssistantSection() {
                 <p
                   className={cn('text-sm text-gray-700', montserrat.className)}
                 >
-                  Olá! Sou o 6Wings Bot, seu assistente virtual. Como posso
-                  ajudar você hoje? Posso auxiliar com: • Busca de produtos •
-                  Informações sobre pedidos • Dúvidas sobre entrega • Suporte ao
-                  cliente
+                  {t('description')}
                 </p>
               </div>
             </div>
@@ -92,7 +90,7 @@ export function AssistantSection() {
               <div className="w-full">
                 <AIInputWithLoading
                   id="ai-input-with-loading"
-                  placeholder="Faça uma pergunta"
+                  placeholder={t('chat-input.placeholder')}
                   onSubmit={handleSubmit}
                   className="w-full"
                   minHeight={53}
@@ -102,23 +100,23 @@ export function AssistantSection() {
               <Button
                 variant="default"
                 className="w-full rounded-[14px] bg-primary text-white hover:bg-primary/90"
-                onClick={() =>
-                  document.getElementById('ai-input-with-loading')?.focus()
-                }
+                onClick={() => {
+                  const input = document.getElementById(
+                    'ai-input-with-loading'
+                  ) as HTMLInputElement
+                  if (input && input.value.trim()) {
+                    handleSubmit(input.value)
+                  } else {
+                    input?.focus()
+                  }
+                }}
               >
-                Enviar
+                {t('chat-input.button')}
               </Button>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Always render the AssistantModal but control its visibility with isOpen prop */}
-      <AssistantModal
-        isOpen={isAssistantOpen}
-        initialQuestion={initialQuestion}
-        onClose={handleCloseModal}
-      />
     </div>
   )
 }

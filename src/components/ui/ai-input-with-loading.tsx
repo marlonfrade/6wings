@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { Textarea } from '@/components/ui/textarea'
 import { cn } from '@/lib/utils'
 import { useAutoResizeTextarea } from '@/hooks/use-auto-resize-textarea'
+import { useTranslations } from 'next-intl'
 
 interface AIInputWithLoadingProps {
   id?: string
@@ -29,6 +30,7 @@ export function AIInputWithLoading({
   className,
   autoAnimate = false
 }: AIInputWithLoadingProps) {
+  const t = useTranslations('homepage.assistant-section')
   const [inputValue, setInputValue] = useState('')
   const [submitted, setSubmitted] = useState(autoAnimate)
   const [isAnimating] = useState(autoAnimate)
@@ -122,8 +124,10 @@ export function AIInputWithLoading({
             )}
           </button>
         </div>
-        <p className="mx-auto h-4 pl-4 text-xs text-black/70 dark:text-white/70">
-          {submitted ? 'AI is thinking...' : 'Ready to submit!'}
+        <p className="mx-auto h-4 pl-4 text-start text-xs text-black/70 dark:text-white/70">
+          {submitted
+            ? t('chat-input.placeholder-loading')
+            : t('chat-input.placeholder-complete')}
         </p>
       </div>
     </div>
